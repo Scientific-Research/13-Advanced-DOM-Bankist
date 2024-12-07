@@ -8,7 +8,8 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault(); // to prevent the page to jump to the top because of href="#" in html code!
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
