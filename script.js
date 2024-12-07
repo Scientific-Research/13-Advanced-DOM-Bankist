@@ -23,10 +23,8 @@ const closeModal = function () {
 // NOTE: btnsOpenModal is a NodeList, because is the output of querySelectorAll(). A Node List is not an array(is an array-like structure) and doesn't support most of the methods which has an array, but it supports forEach method!
 
 // WE HAVE TWO BUTTONS TO OPEN AN ACCOUNT, ONE IS ON THE TOP AND ANOTHER ONE AT THE BOTTOM OF THE PAGE! THAT'S WHY NEED A FOREACH TO LOOP OVER BOTH OF THEM(NODE LIST) AND ALWAYS IS READY: WHEN SOMEBODY CLICK ON ONE OF THESE BUTTONS, ADDEVENTLISTENER WILL RUN OPENMODAL FUNCTION AS CALLBACK FUNCTION AND WE WILL SEE THE OPEN ACCOUNT FORM APPEARING ON THE PAGE!
-btnsOpenModal.forEach((element) => {
-  // btnsOpenModal[i].addEventListener("click", openModal);
-  element.addEventListener("click", openModal);
-});
+btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
+// btnsOpenModal[i].addEventListener("click", openModal);
 
 btnCloseModal.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
