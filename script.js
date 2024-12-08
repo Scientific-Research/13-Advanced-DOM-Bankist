@@ -119,3 +119,21 @@ console.log("------------------------------Styles------------------------");
 // Styles => These are inline styles.
 message.style.backgroundColor = "#37383d"; // give the color to the message
 message.style.width = "100vw"; // set the width of the message element to 100% of the viewport width! => in this case the message would be from left to the right of the page!
+
+// Is it possible to read the style properties?
+console.log(message.style.height); // no answer, because we didn't set it already manually!
+console.log(message.style.backgroundColor); // rgb(55, 56, 61)
+
+console.log(message.style.color); // no answer, because this feature in in the class (cookie-message) in style.css file and we didn't set it manually as an inline style!
+
+// we can get all feature in our CSS whether the features which are in style.css or the one that we entered manually as inline-styles!
+console.log(getComputedStyle(message).color); // rgb(187, 187, 187)
+console.log(getComputedStyle(message).height); // 43.4px
+
+// adding 40px to the height of message:
+console.log(getComputedStyle(message).height); // 43.4px
+
+const extraHeight = 40;
+message.style.height =
+  parseFloat(getComputedStyle(message).height) + extraHeight + "px";
+console.log(message.style.height);
