@@ -96,11 +96,13 @@ header.append(message);
 // BUT IF WE WANT TO HAVE THE MESSAGE IN MORE THAN ONE PLACE => we make a copy which is a Node copy(several copies) and true to do a deep copy for all child elements!
 // header.append(message.cloneNode(true)); // we see the message in both top and botton the header section => but this is the case that we don't want in most cases!
 
+console.log("---------------------INSERTING ELEMENT WITH BEFORE AND AFTER---");
 // THERE ARE TWO MORE METHODS:
 
 // header.before(message); // put the message before header element!
 // header.after(message); // put the message after header element!
 
+console.log("-----------------------------DELETING ELEMENTS----------------");
 // DELETE ELEMENTS:
 // DELTE THE MESSAGE WHEN WE CLICK ON THE Got it! BUTTON!
 
