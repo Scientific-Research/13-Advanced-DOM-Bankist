@@ -34,3 +34,19 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// ADVANCED-DOM-Banklist
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+console.log("ADVANCED-DOM-Banklist");
+
+// IF WE WANT TO SELECT THE ENTIRE HTML SECTION, WE USE: document.documentElement
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+document.querySelector(".header"); // send us the first element matches this class
+const allSections = document.querySelectorAll(".section"); // send us the all elements match this calss => we have here multiple sections with class section!
+
+console.log(allSections); // NodeList(4)
