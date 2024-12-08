@@ -95,3 +95,19 @@ header.append(message);
 
 // BUT IF WE WANT TO HAVE THE MESSAGE IN MORE THAN ONE PLACE => we make a copy which is a Node copy(several copies) and true to do a deep copy for all child elements!
 // header.append(message.cloneNode(true)); // we see the message in both top and botton the header section => but this is the case that we don't want in most cases!
+
+// THERE ARE TWO MORE METHODS:
+
+// header.before(message); // put the message before header element!
+// header.after(message); // put the message after header element!
+
+// DELETE ELEMENTS:
+// DELTE THE MESSAGE WHEN WE CLICK ON THE Got it! BUTTON!
+
+document.querySelector(".btn--close-cookie").addEventListener("click", () => {
+  // we don't need to add this here again because the message is already in DOM memory: message.classList.add("cookie-message"); // add a class
+  message.remove();
+
+  // THE OLD SCHOOL WAY TO REMOVE - BUT IT STILL IS WORKING:
+  // message.parentElement.removeChild(message);
+});
