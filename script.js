@@ -41,6 +41,8 @@ document.addEventListener("keydown", function (e) {
 
 console.log("ADVANCED-DOM-Banklist");
 
+console.log("-------------------------------SELECTING ELEMENTS-------------");
+
 // IF WE WANT TO SELECT THE ENTIRE HTML SECTION, WE USE: document.documentElement
 console.log(document.documentElement);
 console.log(document.head);
@@ -50,3 +52,19 @@ document.querySelector(".header"); // send us the first element matches this cla
 const allSections = document.querySelectorAll(".section"); // send us the all elements match this calss => we have here multiple sections with class section!
 
 console.log(allSections); // NodeList(4)
+
+document.getElementById("section--1");
+
+const allButtons = document.getElementsByTagName("button"); // All the elemnts with the name of the button!
+
+console.log(allButtons); // HTMLCollection(9) => all the buttons on our page!
+// This send us a HTMLCollection and is different from NodeList!
+
+// NOTE: getElementsByTagName gives us the HTMLCollection and this is a live collection which means when we delete an elemenet for example a button in our HTML, it will reflect on this live collection and we will have one less element => HTMLCollection(8)
+
+// NOTE: Above situation will not happen for the NodeList. When i delete a section, I will have still NodeList with 4 sections and not with 3 setions. NodeList will not update itself!
+
+console.log(document.getElementsByClassName("btn")); // This is like getElementById and getElementsByTagName
+// it doesn't need any dot inside -- This is like getElementById which doesn't need any # inside!
+// THIS ALSO GIVES US A HTML COLLECTION => HTMLCollection(5)
+
