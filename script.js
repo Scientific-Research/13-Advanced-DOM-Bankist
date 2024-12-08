@@ -133,7 +133,15 @@ console.log(getComputedStyle(message).height); // 43.4px
 // adding 40px to the height of message:
 console.log(getComputedStyle(message).height); // 43.4px
 
-const extraHeight = 40;
+const extraHeight = 30;
 message.style.height =
   parseFloat(getComputedStyle(message).height) + extraHeight + "px";
 console.log(message.style.height);
+
+// WORKING WITH CSS CUSTOM PROPERTIES => CSS VARIABLES!
+// when we want to select the root elements(CSS variables) in Style.css, we can use the document.documentElement which is root!
+
+document.documentElement.style.setProperty("--color-primary", "orangered"); // in this case, the color of all elements with --color-primary variable will change to the orangered!
+
+// NOTE: for CSS Variables, we should always use the setProperty as we used it above! The regular style method like this: message.style.backgroundColor will not work!
+// BUT OTHER WAY AROUND IT WORKS: WE CAN ALWAYS USE setProperty FOR BOTH CSS VARIABLES AND REGULAR STYLE METHOD! BUT FOR REGULAR STYLE METHOD, IT WOULD BE MUCH EASIER TO USE THIS METHOD AND NOT setProperty!
