@@ -48,7 +48,7 @@ console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
 
-document.querySelector(".header"); // send us the first element matches this class
+const header = document.querySelector(".header"); // send us the first element matches this class
 const allSections = document.querySelectorAll(".section"); // send us the all elements match this calss => we have here multiple sections with class section!
 
 console.log(allSections); // NodeList(4)
@@ -68,3 +68,30 @@ console.log(document.getElementsByClassName("btn")); // This is like getElementB
 // it doesn't need any dot inside -- This is like getElementById which doesn't need any # inside!
 // THIS ALSO GIVES US A HTML COLLECTION => HTMLCollection(5)
 
+console.log("--------------------Creating and Inserting Elements----------");
+
+//.insertAdjacentHTML => we used this already in bank application to create movements!
+
+// We create now a DOM element from div HTML Element but it is not still on the page => therefore, we can not use it yet and we have to manually insert it on the page!
+const message = document.createElement("div");
+console.log(message); // div
+message.classList.add("cookie-message"); // add a class
+// message.textContent =
+//   "We use cookies for improved functionality and analytics!";
+
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>'; // This is a text and a nicely formatted button!
+
+// and now, we want to put it in the DOM, somewhere in the header:
+// we select the header and then append our message to that element:
+
+// NOTE: prepend actually add the message as first child to the header!
+header.prepend(message); // and now it is in DOM and wee see it on the page on top of the header!
+
+// NOTE: if we want to add message as last child to the header, we use append instead of prepend. In this case we see the message as last element(child) at the bottom of the header section in HTML and also at page!
+
+header.append(message);
+// A DOM ELEMENT IS UNIQUE AND CAN MOVE FROM TOP TO BOTTOM With prepend AND append. It can only be in ONE PLACE like a PERSON that can be only in one place and not in two places at the same time!
+
+// BUT IF WE WANT TO HAVE THE MESSAGE IN MORE THAN ONE PLACE => we make a copy which is a Node copy(several copies) and true to do a deep copy for all child elements!
+// header.append(message.cloneNode(true)); // we see the message in both top and botton the header section => but this is the case that we don't want in most cases!
