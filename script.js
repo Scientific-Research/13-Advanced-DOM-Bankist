@@ -75,7 +75,7 @@ console.log("--------------------Creating and Inserting Elements----------");
 // We create now a DOM element from div HTML Element but it is not still on the page => therefore, we can not use it yet and we have to manually insert it on the page!
 const message = document.createElement("div");
 console.log(message); // div
-message.classList.add("cookie-message"); // add a class
+message.classList.add("cookie-message"); // add a class to the div
 // message.textContent =
 //   "We use cookies for improved functionality and analytics!";
 
@@ -113,3 +113,9 @@ document.querySelector(".btn--close-cookie").addEventListener("click", () => {
   // THE OLD SCHOOL WAY TO REMOVE - BUT IT STILL IS WORKING:
   // message.parentElement.removeChild(message);
 });
+
+console.log("------------------------------Styles------------------------");
+
+// Styles => These are inline styles.
+message.style.backgroundColor = "#37383d"; // give the color to the message
+message.style.width = "100vw"; // set the width of the message element to 100% of the viewport width! => in this case the message would be from left to the right of the page!
