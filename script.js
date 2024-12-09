@@ -219,8 +219,17 @@ btnScrollTo.addEventListener("click", (e) => {
 
   // AND NOW THE QUESTION: WHERE WE WANT TO SCROLL: WE HAVE TO GIVE THESE COORDINATIONS TO THE FOLLOWING METHOD IN window OBJECT:
   // NOTE: we choose only left and top => we want to have only movements in vertical position => top and we don't want to have movement in horizontal position!
-  window.scrollTo(
-    s1coords.left + window.pageXOffset, // we have to add these two offsets, otherwise, it works relative to the viepwort height and width but we need relative to the coordinations of the page!
-    s1coords.top + window.pageYOffset // It means curren position + current scroll
-  ); // NOW, IT WORKS WELL!
+
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset, // we have to add these two offsets, otherwise, it works relative to the viepwort height and width but we need relative to the coordinations of the page!
+  //   s1coords.top + window.pageYOffset // It means curren position + current scroll
+  // ); // NOW, IT WORKS WELL!
+
+  // Even much better and smooth creating an object + behaviour:
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+
+    behavior: "smooth",
+  });
 });
