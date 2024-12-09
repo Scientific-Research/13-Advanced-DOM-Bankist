@@ -246,3 +246,8 @@ h1.addEventListener("mouseenter", () => {
   alert("addEventListener: Great! You are reading the heading :D");
   h1.style.color = "dodgerblue";
 });
+
+// THE SECOND WAY TO SHOW THE MESSAGE WHEN MOUSE ENTERS:
+h1.onmouseenter = () => {
+  alert("mouseenter: Great! You are reading the heading :D");
+};
