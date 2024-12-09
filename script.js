@@ -270,3 +270,20 @@ setTimeout(() => h1.removeEventListener("mouseenter", alerth1), 3000);
 
 // Another way of handling an event is using an HTML attribute: => BUT RECOMMENDED TO NOT BE USED, THIS IS AN OLD SCHOOL WAY:
 // <!-- <h1 onclick="alert('HTML alert')"> OLD SCHOOL; NOT RECOMMENDED TO USE THIS!-->
+
+console.log("-------------------------Event Propagation in Practice-------");
+
+// Random color => rgb(255,255,255)
+
+// GET A RANDOM NUMBER:
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+console.log(randomInt(1, 6));
+
+// HOW TO CREATE A RANDOM CLOR FOLLOWING THE RANDOM NUMBER PROCEDURE:
+const randomColor = (min, max) =>
+  `rgb(${Math.floor(Math.random() * (max - min + 1) + min)},${Math.floor(
+    Math.random() * (max - min + 1) + min
+  )},${Math.floor(Math.random() * (max - min + 1) + min)})`;
+
+console.log(randomColor(0, 255));
