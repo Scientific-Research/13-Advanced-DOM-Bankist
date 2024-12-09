@@ -246,11 +246,15 @@ const alerth1 = () => {
   alert("addEventListener: Great! You are reading the heading :D");
   h1.style.color = "dodgerblue";
 
-  h1.removeEventListener("mouseenter", alerth1); // It will remove the event and listen to the event only once! => when i again enter the mouse => the alert will not appear until i refresh the page again!
+  // h1.removeEventListener("mouseenter", alerth1);
+  // It will remove the event and listen to the event only once! => when i again enter the mouse => the alert will not appear until i refresh the page again!
   // IT MEANS WITH THIS REMOVEEVENTLISTENER, THE FUNCTION RUNS ONLY ONE TIME(THE FUNCTION LISTENS ONLY ONCE).
 };
 
 h1.addEventListener("mouseenter", alerth1);
+
+// We can also say after how many seconds the addeventlistener has to be removed?
+setTimeout(() => h1.removeEventListener("mouseenter", alerth1), 3000);
 
 // THE SECOND WAY TO SHOW THE MESSAGE WHEN MOUSE ENTERS => But this is a bit OLD SCHOOL WAY and now, we use addEventListener() like what we used above!
 // h1.onmouseenter = () => {
