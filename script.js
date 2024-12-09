@@ -163,6 +163,11 @@ console.log(logo.src); // http://127.0.0.1:8080/img/logo.png which is different 
 // to get the relative URL path:
 console.log(logo.getAttribute("src")); // with this we can get the relative address: img/logo.png
 
+// to get the href for a link:
+const link = document.querySelector(".nav__link--btn");
+console.log(link.href); // http://127.0.0.1:8080/?# => gives us the absolute URL path
+console.log(link.getAttribute("href")); // # gives us the relative URL path
+
 console.log(logo.className); // nav__logo
 
 // Setting the Attributes
