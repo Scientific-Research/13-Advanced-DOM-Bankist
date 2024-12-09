@@ -282,8 +282,6 @@ console.log(randomInt(1, 6));
 
 // HOW TO CREATE A RANDOM CLOR FOLLOWING THE RANDOM NUMBER PROCEDURE:
 const randomColor = (min, max) =>
-  `rgb(${Math.floor(Math.random() * (max - min + 1) + min)},${Math.floor(
-    Math.random() * (max - min + 1) + min
-  )},${Math.floor(Math.random() * (max - min + 1) + min)})`;
+  `rgb(${randomInt(min, max)},${randomInt(min, max)},${randomInt(min, max)})`;
 
 console.log(randomColor(0, 255));
