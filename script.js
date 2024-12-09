@@ -93,23 +93,14 @@ document.querySelectorAll(".nav__link").forEach((el) => {
     e.preventDefault(); // to prevent from jumping to the sections!
 
     // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
-    const id = e.target.getAttribute("href");
+    const id = e.target.getAttribute("href"); // e.target is a replacement of this keyword in an arrow function!
     console.log(id); // #section--1, #section--2, #section--3
 
     // section1.scrollIntoView({ behavior: "smooth" });
-    if (id === "#section--1") {
-      document
-        .querySelector("#section--1")
-        .scrollIntoView({ behavior: "smooth" });
-    } else if (id === "#section--2") {
-      document
-        .querySelector("#section--2")
-        .scrollIntoView({ behavior: "smooth" });
-    } else if (id === "#section--3") {
-      document
-        .querySelector("#section--3")
-        .scrollIntoView({ behavior: "smooth" });
-    }
+
+    // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
+    // For other ids and links, the process would be the same!
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   });
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
