@@ -296,7 +296,7 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
   // SOLUTIONS:
   // 1. USING REGULAR FUNCTION OR 2. USING event.target instead of this keyword => I use the second
   // this.style.backgroundColor = randomColor(0, 255);
-  e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
+  // e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
   console.log("LINK", e.target, e.currentTarget);
   console.log(e.currentTarget === e.target); // ONLY HERE FOR .nav__link IS TRUE!
 
@@ -311,7 +311,7 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
 // SECOND ONE FOR nav__links which is the parent of nav__link and includes the complete block of the nav:
 document.querySelector(".nav__links").addEventListener("click", (e) => {
   // console.log("LINK");
-  e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
+  // e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
   console.log("CONTAINER", e.target, e.currentTarget); // e.currentTarget: current link attached to the handler --- e.target: event BUBBLING
   console.log(e.currentTarget === e.target); // false
 });
@@ -320,7 +320,7 @@ document.querySelector(".nav").addEventListener(
   "click",
   (e) => {
     // console.log("LINK");
-    e.target.style.backgroundColor = randomColor(0, 255);
+    // e.target.style.backgroundColor = randomColor(0, 255);
     console.log("NAV", e.target, e.currentTarget);
     console.log(e.currentTarget === e.target); // false
   }
