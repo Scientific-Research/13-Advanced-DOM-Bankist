@@ -191,3 +191,36 @@ console.log(logo.designer); // undefined
 console.log(logo.getAttribute("designer")); // Maximilian
 // OR creating a new Attribute without touching the HTML file:
 logo.setAttribute("company", "Bankist"); // company="Bankist"
+
+console.log("---------------------Completing the BANKIST Project-------------");
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+// adding addEventListener
+
+btnScrollTo.addEventListener("click", (e) => {
+  // section1.setAttribute("href", "section--1");
+
+  // Firts of all, we have to get the coordinates of the section1, where we want to go:
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  // OR if we want to know about the coordinates of the 'learn more' button, where we click from:
+  console.log(e.target.getBoundingClientRect());
+
+  console.log(`Current scroll (X/Y)`, window.pageXOffset, window.pageYOffset); // Current scroll (X/Y) 8.800000190734863 0
+
+  console.log(
+    `height/width viewport`,
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  ); // height/width viewport 678 721
+
+  // AND NOW THE QUESTION: WHERE WE WANT TO SCROLL: WE HAVE TO GIVE THESE COORDINATIONS TO THE FOLLOWING METHOD IN window OBJECT:
+  // NOTE: we choose only left and top => we want to have only movements in vertical position => top and we don't want to have movement in horizontal position!
+  window.scrollTo(
+    s1coords.left + window.pageXOffset, // we have to add these two offsets, otherwise, it works relative to the viepwort height and width but we need relative to the coordinations of the page!
+    s1coords.top + window.pageYOffset // It means curren position + current scroll
+  ); // NOW, IT WORKS WELL!
+});
