@@ -288,15 +288,22 @@ console.log(randomColor(0, 255));
 
 // connect the addEvenetListener to all the nav-links on top of the page:
 // FIRST ONE FOR Features:
-document
-  .querySelector(".nav__link")
-  .addEventListener("click", () => console.log("LINK"));
+document.querySelector(".nav__link").addEventListener("click", (e) => {
+  // console.log("LINK");
+  // In addEventListener(),  this points to the elemnet which is connected to that and that element is a link here => nav__link
+
+  // NOTE: the this keyword will not work with ARROW FUNCTION AS EXPECTED:
+  // SOLUTIONS:
+  // 1. USING REGULAR FUNCTION OR 2. USING event.target instead of this keyword => I use the second
+  // this.style.backgroundColor = randomColor(0, 255);
+  e.target.style.backgroundColor = randomColor(0, 255);
+});
 
 // SECOND ONE FOR
-document
-  .querySelector(".nav__links")
-  .addEventListener("click", () => console.log("LINK"));
+document.querySelector(".nav__links").addEventListener("click", () => {
+  // console.log("LINK");
+});
 
-document
-  .querySelector(".nav")
-  .addEventListener("click", () => console.log("LINK"));
+document.querySelector(".nav").addEventListener("click", () => {
+  // console.log("LINK");
+});
