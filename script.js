@@ -305,6 +305,7 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
   e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
 });
 
-document.querySelector(".nav").addEventListener("click", () => {
+document.querySelector(".nav").addEventListener("click", (e) => {
   // console.log("LINK");
+  e.target.style.backgroundColor = randomColor(0, 255);
 });
