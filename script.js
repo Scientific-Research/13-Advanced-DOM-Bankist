@@ -226,10 +226,13 @@ btnScrollTo.addEventListener("click", (e) => {
   // ); // NOW, IT WORKS WELL!
 
   // Even much better and smooth creating an object + behaviour:
-  window.scrollTo({
-    left: s1coords.left + window.pageXOffset,
-    top: s1coords.top + window.pageYOffset,
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
 
-    behavior: "smooth",
-  });
+  //   behavior: "smooth",
+  // });
+
+  // BUT THERE IS STILL A MODERN WAY TO DO THAT => WITHOUT ALL ABOVE THE WIERD POSITIONS AND CALCULATIONS: => we give the destination address(section1) and the object with one property!
+  section1.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
 });
