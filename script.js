@@ -1,12 +1,15 @@
 "use strict";
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault(); // to prevent the page to jump to the top because of href="#" in html code!
@@ -35,6 +38,61 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+console.log("---------------------Completing the BANKIST Project-------------");
+
+// Button Scrolling:
+// adding addEventListener
+btnScrollTo.addEventListener("click", (e) => {
+  // section1.setAttribute("href", "section--1");
+
+  // Firts of all, we have to get the coordinates of the section1, where we want to go:
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  // OR if we want to know about the coordinates of the 'learn more' button, where we click from:
+  console.log(e.target.getBoundingClientRect());
+
+  console.log(`Current scroll (X/Y)`, window.pageXOffset, window.pageYOffset); // Current scroll (X/Y) 8.800000190734863 0
+
+  console.log(
+    `height/width viewport`,
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  ); // height/width viewport 678 721
+
+  // AND NOW THE QUESTION: WHERE WE WANT TO SCROLL: WE HAVE TO GIVE THESE COORDINATIONS TO THE FOLLOWING METHOD IN window OBJECT:
+  // NOTE: we choose only left and top => we want to have only movements in vertical position => top and we don't want to have movement in horizontal position!
+
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset, // we have to add these two offsets, otherwise, it works relative to the viepwort height and width but we need relative to the coordinations of the page!
+  //   s1coords.top + window.pageYOffset // It means curren position + current scroll
+  // ); // NOW, IT WORKS WELL!
+
+  // Even much better and smooth creating an object + behaviour:
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+
+  //   behavior: "smooth",
+  // });
+
+  // BUT THERE IS STILL A MODERN WAY TO DO THAT => WITHOUT ALL ABOVE THE WIERD POSITIONS AND CALCULATIONS: => we give the destination address(section1) and the object with one property!
+  section1.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
+});
+
+//////////////////////////////////////////////////
+// Page Navigation:
+
+// First of all, Implementing the page Navigation WITHOUT using the Event Delegation:
+
+// 1. GETTING THE ALL THREE LINKS => using querySelectorAll gives us a nodeList and with help of Foreach we can attach the addevenetlistener to each of them:
+// NOTE: All the thrre links on the TOP of the page ahve the same class: .nav__link
+
+document.querySelectorAll(".nav__link").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    console.log("LINk");
+  });
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,51 +249,6 @@ console.log(logo.designer); // undefined
 console.log(logo.getAttribute("designer")); // Maximilian
 // OR creating a new Attribute without touching the HTML file:
 logo.setAttribute("company", "Bankist"); // company="Bankist"
-
-console.log("---------------------Completing the BANKIST Project-------------");
-
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-// adding addEventListener
-
-btnScrollTo.addEventListener("click", (e) => {
-  // section1.setAttribute("href", "section--1");
-
-  // Firts of all, we have to get the coordinates of the section1, where we want to go:
-  const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
-
-  // OR if we want to know about the coordinates of the 'learn more' button, where we click from:
-  console.log(e.target.getBoundingClientRect());
-
-  console.log(`Current scroll (X/Y)`, window.pageXOffset, window.pageYOffset); // Current scroll (X/Y) 8.800000190734863 0
-
-  console.log(
-    `height/width viewport`,
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  ); // height/width viewport 678 721
-
-  // AND NOW THE QUESTION: WHERE WE WANT TO SCROLL: WE HAVE TO GIVE THESE COORDINATIONS TO THE FOLLOWING METHOD IN window OBJECT:
-  // NOTE: we choose only left and top => we want to have only movements in vertical position => top and we don't want to have movement in horizontal position!
-
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset, // we have to add these two offsets, otherwise, it works relative to the viepwort height and width but we need relative to the coordinations of the page!
-  //   s1coords.top + window.pageYOffset // It means curren position + current scroll
-  // ); // NOW, IT WORKS WELL!
-
-  // Even much better and smooth creating an object + behaviour:
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-
-  //   behavior: "smooth",
-  // });
-
-  // BUT THERE IS STILL A MODERN WAY TO DO THAT => WITHOUT ALL ABOVE THE WIERD POSITIONS AND CALCULATIONS: => we give the destination address(section1) and the object with one property!
-  section1.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
-});
 
 console.log("-------------Types of Events and Event Handlers---------------");
 
