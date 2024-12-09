@@ -267,3 +267,6 @@ setTimeout(() => h1.removeEventListener("mouseenter", alerth1), 3000);
 
 // 2. We can remove an eventHandler in the case that we don't need it anymore!
 // FIRST, WE HAVE TO A FUNCTION WITH NTHE SAME CONTENTS AND CALL IT AS CALLBACK FUNCTION IN ADDEVENTLISTENER:
+
+// Another way of handling an event is using an HTML attribute: => BUT RECOMMENDED TO NOT BE USED, THIS IS AN OLD SCHOOL WAY:
+// <!-- <h1 onclick="alert('HTML alert')"> OLD SCHOOL; NOT RECOMMENDED TO USE THIS!-->
