@@ -155,8 +155,14 @@ console.log("--------------------------Attributes----------------------------");
 // Reading the Attributes
 const logo = document.querySelector(".nav__logo");
 console.log(logo.alt); // Bankist logo
+
+// to get the absolute URL path:
 console.log(logo.src); // http://127.0.0.1:8080/img/logo.png which is different from what we have in HTML and this is the absolute URL.
-// What we have in HTML file is a relative address => src="img/logo.png" to the folder where the index.html is located!
+// What we have in HTML file is a relative URL => src="img/logo.png" to the folder where the index.html is located!
+
+// to get the relative URL path:
+console.log(logo.getAttribute("src")); // with this we can get the relative address: img/logo.png
+
 console.log(logo.className); // nav__logo
 
 // Setting the Attributes
