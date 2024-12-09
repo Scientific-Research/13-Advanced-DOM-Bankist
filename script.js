@@ -236,3 +236,13 @@ btnScrollTo.addEventListener("click", (e) => {
   // BUT THERE IS STILL A MODERN WAY TO DO THAT => WITHOUT ALL ABOVE THE WIERD POSITIONS AND CALCULATIONS: => we give the destination address(section1) and the object with one property!
   section1.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
 });
+
+console.log("-------------Types of Events and Event Handlers---------------");
+
+// Mouse Enter Event => is like the hover in CSS:
+const h1 = document.querySelector("h1");
+
+h1.addEventListener("mouseenter", () => {
+  alert("addEventListener: Great! You are reading the heading :D");
+  h1.style.color = "dodgerblue";
+});
