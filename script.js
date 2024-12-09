@@ -242,12 +242,24 @@ console.log("-------------Types of Events and Event Handlers---------------");
 // Mouse Enter Event => is like the hover in CSS:
 const h1 = document.querySelector("h1");
 
-h1.addEventListener("mouseenter", () => {
+const alerth1 = () => {
   alert("addEventListener: Great! You are reading the heading :D");
   h1.style.color = "dodgerblue";
-});
 
-// THE SECOND WAY TO SHOW THE MESSAGE WHEN MOUSE ENTERS:
-h1.onmouseenter = () => {
-  alert("mouseenter: Great! You are reading the heading :D");
+  h1.removeEventListener("mouseenter", alerth1); // It will remove the event and listen to the event only once! => when i again enter the mouse => the alert will not appear until i refresh the page again!
+  // IT MEANS WITH THIS REMOVEEVENTLISTENER, THE FUNCTION RUNS ONLY ONE TIME(THE FUNCTION LISTENS ONLY ONCE).
 };
+
+h1.addEventListener("mouseenter", alerth1);
+
+// THE SECOND WAY TO SHOW THE MESSAGE WHEN MOUSE ENTERS => But this is a bit OLD SCHOOL WAY and now, we use addEventListener() like what we used above!
+// h1.onmouseenter = () => {
+//   alert("mouseenter: Great! You are reading the heading :D");
+// };
+
+// WHY addEventListener is better? => it has two advantages:
+// 1. we can add multiple eventListener to the same Event:
+// But with mouseenter => the second one will overwrite the first one!
+
+// 2. We can remove an eventHandler in the case that we don't need it anymore!
+// FIRST, WE HAVE TO A FUNCTION WITH NTHE SAME CONTENTS AND CALL IT AS CALLBACK FUNCTION IN ADDEVENTLISTENER:
