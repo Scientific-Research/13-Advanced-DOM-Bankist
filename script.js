@@ -299,6 +299,13 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
   e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
   console.log("LINK", e.target, e.currentTarget);
   console.log(e.currentTarget === e.target); // ONLY HERE FOR .nav__link IS TRUE!
+
+  // WE CAN EVEN STOP THE PROPAGATION:
+  // e.stopPropagation(); // The other two parent elements didn't change its color and also we don't see the info from other links in the terminal => the event never arrived at those two elements, that's why handling didn't happend and all because of we stopped the event propagation!
+
+  // WHEN WE HAVE TO STOP THE PROPAGATION:
+  // Stopping the event propagation like this can sometimes be very helpful and fix the problems in very complex applications with many handlers for the same events!
+  // BUT IN GENERAL IS NOT A GOOD IDEA TO STOP THE PROPAGATION OF EVENTS!
 });
 
 // SECOND ONE FOR nav__links which is the parent of nav__link and includes the complete block of the nav:
