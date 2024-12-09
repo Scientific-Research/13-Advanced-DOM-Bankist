@@ -171,6 +171,16 @@ console.log(link.getAttribute("href")); // # gives us the relative URL path
 // Data Attributes:
 console.log(logo.dataset.versionNumber); // 3.0 => data-version-number="3.0" must always beginns with data word, otherwise it will not work!
 
+// Classes
+logo.classList.add("c", "j");
+logo.classList.remove("c", "j");
+logo.classList.toggle("c");
+logo.classList.contains("c"); // it is contains but not includes like what we had already in arrays!
+
+// OR WE CAN SET THE NAME OF THE CALSS: => Don't use that because it overwrite all the existing classes with this name and we can only have one class on any element!
+// NOTE: THE BEST WAY IS TO USE THE ABOVE CLASSLIST, BECAUSE IT WILL NOT INTERFER THE EXISTINGS CLASSES AND WE CAN HAVE DIFFERENT CLASSEAS FOR EVERY ELEMENT!
+// logo.className = "Jonas"; // WE DON'T USE THAT!!!
+
 console.log(logo.className); // nav__logo
 
 // Setting the Attributes
