@@ -296,12 +296,13 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
   // SOLUTIONS:
   // 1. USING REGULAR FUNCTION OR 2. USING event.target instead of this keyword => I use the second
   // this.style.backgroundColor = randomColor(0, 255);
-  e.target.style.backgroundColor = randomColor(0, 255);
+  e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
 });
 
-// SECOND ONE FOR
-document.querySelector(".nav__links").addEventListener("click", () => {
+// SECOND ONE FOR nav__links which is the parent of nav__link and includes the complete block of the nav:
+document.querySelector(".nav__links").addEventListener("click", (e) => {
   // console.log("LINK");
+  e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
 });
 
 document.querySelector(".nav").addEventListener("click", () => {
