@@ -168,6 +168,9 @@ const link = document.querySelector(".nav__link--btn");
 console.log(link.href); // http://127.0.0.1:8080/?# => gives us the absolute URL path
 console.log(link.getAttribute("href")); // # gives us the relative URL path
 
+// Data Attributes:
+console.log(logo.dataset.versionNumber); // 3.0 => data-version-number="3.0" must always beginns with data word, otherwise it will not work!
+
 console.log(logo.className); // nav__logo
 
 // Setting the Attributes
