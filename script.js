@@ -316,12 +316,16 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
   console.log(e.currentTarget === e.target); // false
 });
 
-document.querySelector(".nav").addEventListener("click", (e) => {
-  // console.log("LINK");
-  e.target.style.backgroundColor = randomColor(0, 255);
-  console.log("NAV", e.target, e.currentTarget);
-  console.log(e.currentTarget === e.target); // false
-});
+document.querySelector(".nav").addEventListener(
+  "click",
+  (e) => {
+    // console.log("LINK");
+    e.target.style.backgroundColor = randomColor(0, 255);
+    console.log("NAV", e.target, e.currentTarget);
+    console.log(e.currentTarget === e.target); // false
+  }
+  // true //the eventhandler no longer listen to the bubbling events, but instead listen to the capturing phase! and now NAV is at TOP because of capturing Phase and two others are still waiting for the Bubbling Event and happens after NAV because these feature for them is false as default!=> but nowadays it uses rarely and we can set it as false which is default!
+);
 
 // NOTE: When i click on the Features nav link, all the three get the same class => nav__link which comes from e.target because all three handlers are handling the same event and that is because event BUBBLING!
 // WHAT DOES IT MEANS event BUBBLING: the event originates here in this link and then it bubbles up to its parent element which is nav__links and from there to its next parent element which is nav and go further up in the DOM TREE!
