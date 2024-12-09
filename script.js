@@ -90,7 +90,26 @@ btnScrollTo.addEventListener("click", (e) => {
 
 document.querySelectorAll(".nav__link").forEach((el) => {
   el.addEventListener("click", (e) => {
-    console.log("LINk");
+    e.preventDefault(); // to prevent from jumping to the sections!
+
+    // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
+    const id = e.target.getAttribute("href");
+    console.log(id); // #section--1, #section--2, #section--3
+
+    // section1.scrollIntoView({ behavior: "smooth" });
+    if (id === "#section--1") {
+      document
+        .querySelector("#section--1")
+        .scrollIntoView({ behavior: "smooth" });
+    } else if (id === "#section--2") {
+      document
+        .querySelector("#section--2")
+        .scrollIntoView({ behavior: "smooth" });
+    } else if (id === "#section--3") {
+      document
+        .querySelector("#section--3")
+        .scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -310,7 +329,7 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
   // 1. USING REGULAR FUNCTION OR 2. USING event.target instead of this keyword => I use the second
   // this.style.backgroundColor = randomColor(0, 255);
   // e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
-  console.log("LINK", e.target, e.currentTarget);
+  // console.log("LINK", e.target, e.currentTarget);
   console.log(e.currentTarget === e.target); // ONLY HERE FOR .nav__link IS TRUE!
 
   // WE CAN EVEN STOP THE PROPAGATION:
@@ -325,7 +344,7 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
 document.querySelector(".nav__links").addEventListener("click", (e) => {
   // console.log("LINK");
   // e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
-  console.log("CONTAINER", e.target, e.currentTarget); // e.currentTarget: current link attached to the handler --- e.target: event BUBBLING
+  // console.log("CONTAINER", e.target, e.currentTarget); // e.currentTarget: current link attached to the handler --- e.target: event BUBBLING
   console.log(e.currentTarget === e.target); // false
 });
 
@@ -334,7 +353,7 @@ document.querySelector(".nav").addEventListener(
   (e) => {
     // console.log("LINK");
     // e.target.style.backgroundColor = randomColor(0, 255);
-    console.log("NAV", e.target, e.currentTarget);
+    // console.log("NAV", e.target, e.currentTarget);
     console.log(e.currentTarget === e.target); // false
   }
   // true //the eventhandler no longer listen to the bubbling events, but instead listen to the capturing phase! and now NAV is at TOP because of capturing Phase and two others are still waiting for the Bubbling Event and happens after NAV because these feature for them is false as default!=> but nowadays it uses rarely and we can set it as false which is default!
