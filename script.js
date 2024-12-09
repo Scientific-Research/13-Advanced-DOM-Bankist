@@ -285,3 +285,18 @@ const randomColor = (min, max) =>
   `rgb(${randomInt(min, max)},${randomInt(min, max)},${randomInt(min, max)})`;
 
 console.log(randomColor(0, 255));
+
+// connect the addEvenetListener to all the nav-links on top of the page:
+// FIRST ONE FOR Features:
+document
+  .querySelector(".nav__link")
+  .addEventListener("click", () => console.log("LINK"));
+
+// SECOND ONE FOR
+document
+  .querySelector(".nav__links")
+  .addEventListener("click", () => console.log("LINK"));
+
+document
+  .querySelector(".nav")
+  .addEventListener("click", () => console.log("LINK"));
