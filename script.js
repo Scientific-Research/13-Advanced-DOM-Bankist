@@ -297,15 +297,21 @@ document.querySelector(".nav__link").addEventListener("click", (e) => {
   // 1. USING REGULAR FUNCTION OR 2. USING event.target instead of this keyword => I use the second
   // this.style.backgroundColor = randomColor(0, 255);
   e.target.style.backgroundColor = randomColor(0, 255); // The features get the random colors!
+  console.log("LINK", e.target);
 });
 
 // SECOND ONE FOR nav__links which is the parent of nav__link and includes the complete block of the nav:
 document.querySelector(".nav__links").addEventListener("click", (e) => {
   // console.log("LINK");
   e.target.style.backgroundColor = randomColor(0, 255); // The whole block of nav get the random colors when i click on the nav block!
+  console.log("CONTAINER", e.target);
 });
 
 document.querySelector(".nav").addEventListener("click", (e) => {
   // console.log("LINK");
   e.target.style.backgroundColor = randomColor(0, 255);
+  console.log("NAV", e.target);
 });
+
+// NOTE: When i click on the Features nav link, all the three get the same class => nav__link which comes from e.target because all three handlers are handling the same event and that is because event BUBBLING!
+// WHAT DOES IT MEANS event BUBBLING: the event originates here in this link and then it bubbles up to its parent element which is nav__links and from there to its next parent element which is nav and go further up in the DOM TREE!
