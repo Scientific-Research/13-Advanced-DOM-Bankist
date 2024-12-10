@@ -384,3 +384,28 @@ document.querySelector(".nav").addEventListener(
 
 // NOTE: When i click on the Features nav link, all the three get the same class => nav__link which comes from e.target because all three handlers are handling the same event and that is because event BUBBLING!
 // WHAT DOES IT MEANS event BUBBLING: the event originates here in this link and then it bubbles up to its parent element which is nav__links and from there to its next parent element which is nav and go further up in the DOM TREE!
+
+console.log("-------------------------DOM Traversing------------------------");
+
+// DOM Traversing is basically walking Through the DOM which means we can select an element based-on another element! => we can select an element relative to a certain other elements for example a direct child or a direct parent element!
+
+const h1_1 = document.querySelector("h1");
+
+// Going downwards: selecting child elements:
+// First Solution: using querySelector => querySelector works also on elements and not only on documents
+
+console.log(h1_1.querySelectorAll(".highlight")); // NodeList(2) [span.highlight, span.highlight]
+// We have now all elements with highlight class which are children of h1 element! and it doesn't matter how deep would be the child elements inside the h1 element as parent element!
+
+// BUT WE HAVE TO KNOW THAT IT WILL NOT SELECT ALL THE ELEMENTS WITH highlight CLASS. It selects only all the elements with highlight calss which are children of h1 element!
+
+// Getting the direct children:
+console.log(h1_1.childNodes); // NodeList(9) [text, comment, text, span.highlight, text, br, text, span.highlight, text]
+
+console.log(h1_1.children); // HTMLCollection(3) [span.highlight, br, span.highlight]
+
+// changing the property of the first child:
+h1_1.firstElementChild.style.color = "orangered"; // the banking word color changes to the red, because it is the first child with span.highlight class and the index is zero => 0:span.highlight
+
+// changing the color of the last element child:
+h1_1.lastElementChild.style.color = "dodgerblue";
