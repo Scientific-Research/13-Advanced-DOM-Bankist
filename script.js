@@ -175,6 +175,9 @@ tabContainer.addEventListener("click", (e) => {
 
   // When clicked3 is not null and has value and !Truthy would be falsy and if will not be executed and will not return and will continue with the remaining of the code!
 
+  // To remove the active tab => it comes down and don't stay above anymore. Because tabs is a nodeList, we use the foreach to clear the active state from all the tabs => reset all the tabs to the initial state!
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+
   clicked3.classList.add("operations__tab--active"); // and now, when we click on other two tab, they will move a little bit to the top and it shows us this button has been selected!
 
   if (e.target.classList.contains("operations__tab")) {
