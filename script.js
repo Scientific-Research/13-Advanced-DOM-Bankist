@@ -115,6 +115,7 @@ console.log("-----Implementing the page Navigation WITH Event Delegation-----");
 // 2. Determine what element originated the event:
 
 document.querySelector(".nav__links").addEventListener("click", (e) => {
+  e.preventDefault(); // we need always this, whatever we click. It prevents from jumping!
   // where the event actually happened which is stored in e.target:
   console.log(e.target); // when i click on the Features, the evenet occures from there:
   // <a class="nav__link" href="#section--1">Features</a>
@@ -126,9 +127,12 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
   // We need now a matching strategy => we choose only the classes contains "nav__link"
   if (e.target.classList.contains("nav__link")) {
     console.log("LINk"); // => we see only 'LINK' word when i click on the three links on top of the page => Features, Operations, Testimonials
+
+    // and now, we use the same code as we already used above:
+    const id = e.target.getAttribute("href");
+    console.log(id); // #section--1, #section--2, #section--3
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
-  // and now, we use the same code as we already used above:
-  
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
