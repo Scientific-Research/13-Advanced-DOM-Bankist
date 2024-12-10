@@ -170,6 +170,13 @@ tabContainer.addEventListener("click", (e) => {
   console.log(clicked3);
   // AND NOW, WHEN WE CLICK THE BUTTON ITSELF, WE GET THE BUTTON because it finds the closest parent with this class name => operations__tab which is button itself! AND WHEN WE CLICK THE NUMBER, WE GET THE BUTTON AGAIN, because it finds the closest parent with this class name => operations__tab which is button itself!
 
+  // Guard clause
+  if (!clicked3) return; // when we click between these three buttons, we get null because we don't have the closest parent element. To avoid that, when clicked3 is null which is a falsy value and !falsy is truthy => if(truthy) will be executed and returns and will not go to the next line of the program!
+
+  // When clicked3 is not null and has value and !Truthy would be falsy and if will not be executed and will not return and will continue with the remaining of the code!
+
+  clicked3.classList.add("operations__tab--active"); // and now, when we click on other two tab, they will move a little bit to the top and it shows us this button has been selected!
+
   if (e.target.classList.contains("operations__tab")) {
     // console.log("Tabs"); // => we see only 'LINK' word when i click on the three links on top of the page => Features, Operations, Testimonials
     // // and now, we use the same code as we already used above:
