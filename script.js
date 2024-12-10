@@ -7,6 +7,10 @@ const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
+const tabs = document.querySelectorAll(".operations__tab");
+const tabContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+const nav = document.querySelector(".nav");
 
 ///////////////////////////////////////
 // Modal window
@@ -137,10 +141,6 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
 
 console.log("-----------------Building a Tabbed Component-------------------");
 
-const tabs = document.querySelectorAll(".operations__tab");
-const tabContainer = document.querySelector(".operations__tab-container");
-const tabsContent = document.querySelectorAll(".operations__content");
-
 // tabs is a nodeList, therefore we can use a forEach for that!
 // USING FOREACH is not a good idea, because when we have 200 buttons, we will have 200 copy of the callback function in the memory and it will slow down the page!
 
@@ -204,6 +204,43 @@ tabContainer.addEventListener("click", (e) => {
   // clicked3.dataset.tab is a number => data-tab="1" or "2" or "3"
   // It muss start with data and followed with other things -- when we want to get the value from this data, we use dataset. ...
 });
+
+console.log("-----------------Passing Arguments to Event Handlers-----------");
+
+// when i hover over one of the links, other ones will fade out and this includes even the logo at the left side!
+
+// Menu fade Animation
+// We don't use the forEach loop and attach to every of the nav__link an addevenetlistener, and we should use the EVENT DELEGATION instead:
+
+// 1. We have to find the common parent element of all these links and also including the logo:
+// if we were only working with the links, the class nav__links would be enough for all of them, but we have logo too here and class nav would be the best and cover all of them!
+
+// 2. Attach the addEventListenet to that and use the mouseover event instead of click event:
+// We used already the mouseenter but it doesn't bubble and we need an event here to bubble, that's why we have to use mouseover:
+nav.addEventListener("mouseover", (e) => {
+  // 3. and now, we have to match the element that we are looking for: THE ELEMENT WITH nav__link CLASS ON IT!
+  // NOTE: we don't need the closest method here and contains method here is enough, because there is no other child here like the button before that we had button plus a number in a span as the second child and we should use closest there to find a parentelemnet for both of them!
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    console.log(link); // <a class="nav__link" href="#section--1">Features</a>
+
+    // 4. To select all other links: all other sieblings: TO DO THAT, WE GO TO THE PARENT AND FROM THERE WE SELECT ALL THE CHILDREN:
+    // nav__link class has other parents too like nav__item and nav__links and nav is not the closest parent for that in compare to these two classes! but there is no problem when we choose a higher up parent! and now from there we can search for nav__link again!
+    // WE get the sieblings which are other links in addition to the initial link!
+    const sieblings = link.closest(".nav").querySelector(".nav__link");
+
+    // 5. and Now, select the logo: we can find it manually with its class name, but using closest is much more robuster => we move up to the closest parent('.nav') and from there we simply search for an image!
+    const logo = link.closest(".nav").querySelector("img");
+
+    // and now we have to change the opacity of the sieblings of the selected link:
+    sieblings.forEach((el)=>{
+      
+    })
+  }
+});
+
+// The opposite of mouseover is mouseout
+nav.addEventListener("mouseout", (e) => {});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
