@@ -147,7 +147,37 @@ const tabsContent = document.querySelectorAll(".operations__content");
 // tabs.forEach((t) => t.addEventListener("click", () => console.log("TAB")));
 
 // THE BEST SOLTION IS TO USE THE EVENT DELEGATION:
+// We need to attach the eventhandler on the common parent element of all the elements that we are interested in and IN OUR CASE, IT IS: tabContainer!
 
+tabContainer.addEventListener("click", (e) => {
+  // We need now a matching strategy =>
+  const clicked = e.target;
+  console.log(clicked); // <button class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1"> <span>01</span>Instant Transfers </button>
+
+  // THERE ARE TWO PROBLEM HERE:
+  // 1. when i click on the number which are on the buttons => it gives me the number inside the span
+  // 2. when i click on the button itself => it gives me the button html info
+
+  // What I need here is button html info and not a number inside the span when i even click only on the number located on the button! IN THIS CASE I HAVE TO DO THE DOM TRAVERSY AND GET THE PARENT ELEMNET WHEN I CLICK ON THE NUMBER 01 or 02 or 03, BECAUSE THE BUTTON IS THE PARENT ELEMNET OF THE SAPN!
+  const clicked2 = e.target.parentElement;
+  console.log(clicked2); // BUT WE HAVE STILL A PROBLEM: WE GET THE BUTTON INFO WHEN I CLICK ON THE SPAN BUT I GET THE PARENT INFO OF BUTTON WHEN I CLICK ON THE BUTTON ITSELF AND THAT WE DON'T WANT!
+
+  // QUESTION: HOW CAN I GET THE BUTTON INFO WHEN I CLICK ON THE BUTTON ITSELF AND NOT THE INFO OF PARENT OF THE BUTTON:
+  // Answer: We use the closest method(going upwards to the parent!): which gives us the closest parent element which would be for the button => button itself and for the span would be the button as the closest parent element!
+
+  // SO, HERE INSTEAD OF SELECTING ALWAYS ABOUT THE parentElement LIKE WHAT WE HAVE ABOVE, WE USE CLOSEST TO SEARCH FOR THE CLOSEST OPERATION TAB:
+  const clicked3 = e.target.closest(".operations__tab");
+  console.log(clicked3);
+  // AND NOW, WHEN WE CLICK THE BUTTON ITSELF, WE GET THE BUTTON because it finds the closest parent with this class name => operations__tab which is button itself! AND WHEN WE CLICK THE NUMBER, WE GET THE BUTTON AGAIN, because it finds the closest parent with this class name => operations__tab which is button itself!
+
+  if (e.target.classList.contains("operations__tab")) {
+    // console.log("Tabs"); // => we see only 'LINK' word when i click on the three links on top of the page => Features, Operations, Testimonials
+    // // and now, we use the same code as we already used above:
+    // const id = e.target.getAttribute("href");
+    // console.log(id); // #section--1, #section--2, #section--3
+    // document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
