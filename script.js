@@ -135,6 +135,20 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
   }
 });
 
+console.log("-----------------Building a Tabbed Component-------------------");
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+// tabs is a nodeList, therefore we can use a forEach for that!
+// USING FOREACH is not a good idea, because when we have 200 buttons, we will have 200 copy of the callback function in the memory and it will slow down the page!
+
+// tabs.forEach((t) => t.addEventListener("click", () => console.log("TAB")));
+
+// THE BEST SOLTION IS TO USE THE EVENT DELEGATION:
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
