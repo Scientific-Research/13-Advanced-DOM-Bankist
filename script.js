@@ -177,6 +177,7 @@ tabContainer.addEventListener("click", (e) => {
 
   // To remove the active tab => it comes down and don't stay above anymore. Because tabs is a nodeList, we use the foreach to clear the active state from all the tabs => reset all the tabs to the initial state!
   tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  // IT MEANS FIRST CLEAR THE ACTIVE CLASS FROM ALL OF THEM AND THEN ADD THIS CLASS TO ONE OF THEM!
 
   clicked3.classList.add("operations__tab--active"); // and now, when we click on other two tab, they will move a little bit to the top and it shows us this button has been selected!
 
@@ -187,6 +188,13 @@ tabContainer.addEventListener("click", (e) => {
     // console.log(id); // #section--1, #section--2, #section--3
     // document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
+
+  // ACTIVATE THE CONTENT AREA:
+  document
+    .querySelector(`.operations__content--${clicked3.dataset.tab}`)
+    .classList.add("operations__content--active");
+  // clicked3.dataset.tab is a number => data-tab="1" or "2" or "3"
+  // It muss start with data and followed with other things -- when we want to get the value from this data, we use dataset. ...
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
