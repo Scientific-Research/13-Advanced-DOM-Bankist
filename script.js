@@ -446,6 +446,8 @@ console.log([...h1.parentElement.children]); // (4) [h1, h4, button.btn--text.b
 [...h1.parentElement.children].forEach((el) => {
   // we want to change the style to ALL THE SIEBLINGS but except the elemnet itself!
   // We scale all other three sieblings except element itself which is h1 by 50%:
-  if (el !== h1) el.style.transform = "scale(0.5)";
+  /////////////////////////////////////////////////////////
+  // if (el !== h1) el.style.transform = "scale(0.5)";
+  /////////////////////////////////////////////////////////
   // el.style.transform = "scale(0.5)"; with this h1 element would be scaled down by 50% too!
 });
