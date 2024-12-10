@@ -227,15 +227,18 @@ nav.addEventListener("mouseover", (e) => {
     // 4. To select all other links: all other sieblings: TO DO THAT, WE GO TO THE PARENT AND FROM THERE WE SELECT ALL THE CHILDREN:
     // nav__link class has other parents too like nav__item and nav__links and nav is not the closest parent for that in compare to these two classes! but there is no problem when we choose a higher up parent! and now from there we can search for nav__link again!
     // WE get the sieblings which are other links in addition to the initial link!
-    const sieblings = link.closest(".nav").querySelector(".nav__link");
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
 
     // 5. and Now, select the logo: we can find it manually with its class name, but using closest is much more robuster => we move up to the closest parent('.nav') and from there we simply search for an image!
     const logo = link.closest(".nav").querySelector("img");
 
     // and now we have to change the opacity of the sieblings of the selected link:
-    sieblings.forEach((el)=>{
-      
-    })
+    siblings.forEach((el) => {
+      // we have to check if the current element is not the link itself, because siblings that we have already includes the initial link as well!
+      // WE WANT TO HAVE THE OPACITY AS 50% FOR LINK AND FOR logo AS WELL!
+      if (el !== link) el.style.opacity = 0.5;
+      logo.style.opacity = 0.5;
+    });
   }
 });
 
