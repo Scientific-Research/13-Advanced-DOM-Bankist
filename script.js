@@ -189,7 +189,15 @@ tabContainer.addEventListener("click", (e) => {
     // document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 
+  // When we don't remove the active content, with every time clicking on the tab, it will be listed one after each other in a list but we don't want that. we want to display only one text (one content there!).
+
+  // SOLUTION: FIRST WE CLEAR THE ACTIVE CLASS FROM ALL THE THEM AND THEN ADD THIS CLASS TO ONE OF THEM! IN THIS CASE, WE SEE ONLY THE ACTIVE CONTENT ON THE PAGE AND NOT ALL THE CONTENT AS A LIST!
+  tabsContent.forEach((tc) =>
+    tc.classList.remove("operations__content--active")
+  );
+
   // ACTIVATE THE CONTENT AREA:
+  console.log(clicked3.dataset.tab); // 1 or 2 or 3
   document
     .querySelector(`.operations__content--${clicked3.dataset.tab}`)
     .classList.add("operations__content--active");
