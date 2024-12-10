@@ -417,10 +417,35 @@ console.log(h1_1.parentNode); // for direct parents hwich is similat to the chil
 console.log(h1_1.parentElement); // div.header__title
 
 // It selects the closest header to our h1 element, so the closest parent element that has 'header' class and simply apply this style to that!
-h1.closest(".header").style.background = "var(--gradient-secondary)";
+h1_1.closest(".header").style.background = "var(--gradient-secondary)";
 // We will use it all the time specially with evenet delegation
 
 // It can also return h1 element itself:
-h1.closest("h1").style.background = "var(--gradient-primary)";
+h1_1.closest("h1").style.background = "var(--gradient-primary)";
 
 // NOTE: closest is opposite of querySelector => both receives a query string as input BUT querySelector finds children no matter how deep in DOM Tree WHILE closest method finds Parent and no matter how far up is in DOM Tree!
+
+// Going sideways: siblings
+// WE CAN ONLY ACCESS IN JS TO DIRECT SIEBLINGS => ONLY THE PREVIOUS AND THE NEXT ONE!
+console.log(h1_1.previousElementSibling); // null
+console.log(h1_1.nextElementSibling); // <h4>A simpler banking experience for a simpler life.</h4>
+
+console.log(h1_1.previousSibling); // #text
+console.log(h1_1.nextSibling); // #text
+
+// HOW CAN WE GET THE ALL SIEBLINGS and not just the previous and next ones:
+// It consists of combining these two commands: h1_1.parentElement + h1_1.children
+// We move up to the direct parent element and than select all the children from there:
+console.log(h1.parentElement.children); // HTMLCollection(4) [h1, h4, button.btn--text.btn--scroll-to, img.header__img] => the h1 itself is included too!
+
+// NOTE: This is a HTML collection and not an array but still is iterable and we can convert it to an array using spread operator and two brackerts: [...] like always!
+
+console.log([...h1.parentElement.children]); // (4) [h1, h4, button.btn--text.btn--scroll-to, img.header__img]
+
+// AND NOW WE CAN LOOP OVER THIS ARRAY UISNG forEach AND DO SOME FUNS:
+[...h1.parentElement.children].forEach((el) => {
+  // we want to change the style to ALL THE SIEBLINGS but except the elemnet itself!
+  // We scale all other three sieblings except element itself which is h1 by 50%:
+  if (el !== h1) el.style.transform = "scale(0.5)";
+  // el.style.transform = "scale(0.5)"; with this h1 element would be scaled down by 50% too!
+});
