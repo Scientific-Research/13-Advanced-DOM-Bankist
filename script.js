@@ -409,3 +409,18 @@ h1_1.firstElementChild.style.color = "orangered"; // the banking word color chan
 
 // changing the color of the last element child:
 h1_1.lastElementChild.style.color = "dodgerblue";
+
+// Going upwards: selecting parents
+console.log(h1_1.parentNode); // for direct parents hwich is similat to the childNodes
+// div.header__title which is direct parent of h1 element
+
+console.log(h1_1.parentElement); // div.header__title
+
+// It selects the closest header to our h1 element, so the closest parent element that has 'header' class and simply apply this style to that!
+h1.closest(".header").style.background = "var(--gradient-secondary)";
+// We will use it all the time specially with evenet delegation
+
+// It can also return h1 element itself:
+h1.closest("h1").style.background = "var(--gradient-primary)";
+
+// NOTE: closest is opposite of querySelector => both receives a query string as input BUT querySelector finds children no matter how deep in DOM Tree WHILE closest method finds Parent and no matter how far up is in DOM Tree!
