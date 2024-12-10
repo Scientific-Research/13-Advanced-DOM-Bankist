@@ -243,7 +243,30 @@ nav.addEventListener("mouseover", (e) => {
 });
 
 // The opposite of mouseover is mouseout
-nav.addEventListener("mouseout", (e) => {});
+nav.addEventListener("mouseout", (e) => {
+  // 3. and now, we have to match the element that we are looking for: THE ELEMENT WITH nav__link CLASS ON IT!
+  // NOTE: we don't need the closest method here and contains method here is enough, because there is no other child here like the button before that we had button plus a number in a span as the second child and we should use closest there to find a parentelemnet for both of them!
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    console.log(link); // <a class="nav__link" href="#section--1">Features</a>
+
+    // 4. To select all other links: all other sieblings: TO DO THAT, WE GO TO THE PARENT AND FROM THERE WE SELECT ALL THE CHILDREN:
+    // nav__link class has other parents too like nav__item and nav__links and nav is not the closest parent for that in compare to these two classes! but there is no problem when we choose a higher up parent! and now from there we can search for nav__link again!
+    // WE get the sieblings which are other links in addition to the initial link!
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+
+    // 5. and Now, select the logo: we can find it manually with its class name, but using closest is much more robuster => we move up to the closest parent('.nav') and from there we simply search for an image!
+    const logo = link.closest(".nav").querySelector("img");
+
+    // and now we have to change the opacity of the sieblings of the selected link:
+    siblings.forEach((el) => {
+      // we have to check if the current element is not the link itself, because siblings that we have already includes the initial link as well!
+      // WITH OPACITY = 1, EVERYTHING BACKS TO 1!, the current element doesn't need that, because it is already has the opacity = 1!
+      if (el !== link) el.style.opacity = 1;
+      logo.style.opacity = 1;
+    });
+  }
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
