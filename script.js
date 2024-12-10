@@ -207,17 +207,9 @@ tabContainer.addEventListener("click", (e) => {
 
 console.log("-----------------Passing Arguments to Event Handlers-----------");
 
-// when i hover over one of the links, other ones will fade out and this includes even the logo at the left side!
+// REFACTORING: we have some repetitve code below and we have to refactor them => Refactoring means that, we put the repetitive parts inside a new function and send the needed arguments to that!
 
-// Menu fade Animation
-// We don't use the forEach loop and attach to every of the nav__link an addevenetlistener, and we should use the EVENT DELEGATION instead:
-
-// 1. We have to find the common parent element of all these links and also including the logo:
-// if we were only working with the links, the class nav__links would be enough for all of them, but we have logo too here and class nav would be the best and cover all of them!
-
-// 2. Attach the addEventListenet to that and use the mouseover event instead of click event:
-// We used already the mouseenter but it doesn't bubble and we need an event here to bubble, that's why we have to use mouseover:
-nav.addEventListener("mouseover", (e) => {
+const handleHover = (e, opacity) => {
   // 3. and now, we have to match the element that we are looking for: THE ELEMENT WITH nav__link CLASS ON IT!
   // NOTE: we don't need the closest method here and contains method here is enough, because there is no other child here like the button before that we had button plus a number in a span as the second child and we should use closest there to find a parentelemnet for both of them!
   if (e.target.classList.contains("nav__link")) {
@@ -236,36 +228,46 @@ nav.addEventListener("mouseover", (e) => {
     siblings.forEach((el) => {
       // we have to check if the current element is not the link itself, because siblings that we have already includes the initial link as well!
       // WE WANT TO HAVE THE OPACITY AS 50% FOR LINK AND FOR logo AS WELL!
-      if (el !== link) el.style.opacity = 0.5;
-      logo.style.opacity = 0.5;
+
+      // WITH OPACITY = 1, EVERYTHING BACKS TO 1!, the current element doesn't need that, because it is already has the opacity = 1!
+
+      // if (el !== link) el.style.opacity = 0.5;
+      if (el !== link) el.style.opacity = opacity;
+      // logo.style.opacity = 0.5;
+      logo.style.opacity = opacity;
     });
   }
+};
+
+// when i hover over one of the links, other ones will fade out and this includes even the logo at the left side!
+
+// Menu fade Animation
+// We don't use the forEach loop and attach to every of the nav__link an addevenetlistener, and we should use the EVENT DELEGATION instead:
+
+// 1. We have to find the common parent element of all these links and also including the logo:
+// if we were only working with the links, the class nav__links would be enough for all of them, but we have logo too here and class nav would be the best and cover all of them!
+
+// 2. Attach the addEventListenet to that and use the mouseover event instead of click event:
+// We used already the mouseenter but it doesn't bubble and we need an event here to bubble, that's why we have to use mouseover:
+
+/////////////////////////////////////////////////////
+// These two addEventListener will not work because we can not pass the arguments with them:
+// nav.addEventListener("mouseover", handleHover);
+// nav.addEventListener("mouseout", handleHover);
+
+// These two will not work neither!
+// nav.addEventListener("mouseover", handleHover(e, 0.5));
+// nav.addEventListener("mouseout", handleHover(e, 1));
+/////////////////////////////////////////////////////
+
+// ONLY THE FOLLOWING FUNCTIONS WILL WORK:
+nav.addEventListener("mouseover", (e) => {
+  handleHover(e, 0.5);
 });
 
 // The opposite of mouseover is mouseout
 nav.addEventListener("mouseout", (e) => {
-  // 3. and now, we have to match the element that we are looking for: THE ELEMENT WITH nav__link CLASS ON IT!
-  // NOTE: we don't need the closest method here and contains method here is enough, because there is no other child here like the button before that we had button plus a number in a span as the second child and we should use closest there to find a parentelemnet for both of them!
-  if (e.target.classList.contains("nav__link")) {
-    const link = e.target;
-    console.log(link); // <a class="nav__link" href="#section--1">Features</a>
-
-    // 4. To select all other links: all other sieblings: TO DO THAT, WE GO TO THE PARENT AND FROM THERE WE SELECT ALL THE CHILDREN:
-    // nav__link class has other parents too like nav__item and nav__links and nav is not the closest parent for that in compare to these two classes! but there is no problem when we choose a higher up parent! and now from there we can search for nav__link again!
-    // WE get the sieblings which are other links in addition to the initial link!
-    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
-
-    // 5. and Now, select the logo: we can find it manually with its class name, but using closest is much more robuster => we move up to the closest parent('.nav') and from there we simply search for an image!
-    const logo = link.closest(".nav").querySelector("img");
-
-    // and now we have to change the opacity of the sieblings of the selected link:
-    siblings.forEach((el) => {
-      // we have to check if the current element is not the link itself, because siblings that we have already includes the initial link as well!
-      // WITH OPACITY = 1, EVERYTHING BACKS TO 1!, the current element doesn't need that, because it is already has the opacity = 1!
-      if (el !== link) el.style.opacity = 1;
-      logo.style.opacity = 1;
-    });
-  }
+  handleHover(e, 1);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
