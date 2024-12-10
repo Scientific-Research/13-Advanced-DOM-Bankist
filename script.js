@@ -89,21 +89,21 @@ btnScrollTo.addEventListener("click", (e) => {
 // NOTE: All the thrre links on the TOP of the page ahve the same class: .nav__link
 console.log("---Implementing the page Navigation WITHOUT Event Delegation---");
 
-// document.querySelectorAll(".nav__link").forEach((el) => {
-//   el.addEventListener("click", (e) => {
-//     e.preventDefault(); // to prevent from jumping to the sections!
+document.querySelectorAll(".nav__link").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault(); // to prevent from jumping to the sections!
 
-//     // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
-//     const id = e.target.getAttribute("href"); // e.target is a replacement of this keyword in an arrow function!
-//     console.log(id); // #section--1, #section--2, #section--3
+    // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
+    const id = e.target.getAttribute("href"); // e.target is a replacement of this keyword in an arrow function!
+    console.log(id); // #section--1, #section--2, #section--3
 
-//     // section1.scrollIntoView({ behavior: "smooth" });
+    // section1.scrollIntoView({ behavior: "smooth" });
 
-//     // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
-//     // For other ids and links, the process would be the same!
-//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-//   });
-// });
+    // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
+    // For other ids and links, the process would be the same!
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  });
+});
 
 console.log("-----Implementing the page Navigation WITH Event Delegation-----");
 
