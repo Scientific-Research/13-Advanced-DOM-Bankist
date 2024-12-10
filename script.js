@@ -87,22 +87,50 @@ btnScrollTo.addEventListener("click", (e) => {
 
 // 1. GETTING THE ALL THREE LINKS => using querySelectorAll gives us a nodeList and with help of Foreach we can attach the addevenetlistener to each of them:
 // NOTE: All the thrre links on the TOP of the page ahve the same class: .nav__link
+console.log("---Implementing the page Navigation WITHOUT Event Delegation---");
 
-document.querySelectorAll(".nav__link").forEach((el) => {
-  el.addEventListener("click", (e) => {
-    e.preventDefault(); // to prevent from jumping to the sections!
+// document.querySelectorAll(".nav__link").forEach((el) => {
+//   el.addEventListener("click", (e) => {
+//     e.preventDefault(); // to prevent from jumping to the sections!
 
-    // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
-    const id = e.target.getAttribute("href"); // e.target is a replacement of this keyword in an arrow function!
-    console.log(id); // #section--1, #section--2, #section--3
+//     // WE HAVE TO GET THE href FOR EVERY LINK AND SEND IT TO THE SECTION AS ID. WHEN EVERY SECTION SEES ITS OWN ID AFTER CLICKING ON THE RESPECTED LINK => IT WILL MOVES SMOOTHLY TO THAT SECTION:
+//     const id = e.target.getAttribute("href"); // e.target is a replacement of this keyword in an arrow function!
+//     console.log(id); // #section--1, #section--2, #section--3
 
-    // section1.scrollIntoView({ behavior: "smooth" });
+//     // section1.scrollIntoView({ behavior: "smooth" });
 
-    // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
-    // For other ids and links, the process would be the same!
-    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-  });
+//     // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
+//     // For other ids and links, the process would be the same!
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+console.log("-----Implementing the page Navigation WITH Event Delegation-----");
+
+// NOTE: But the better Solution is to use Evenet Delegation => Events bubble up => we put the eventListener on a common parent of all the elements that we are interested in!
+// In our example, common parent is the container around all the links => class="nav__links"
+
+// WE NEED TWO STEPS IN EVENT DELEGATION:
+// 1. We add the eventListener to a common parent element of all elements that wre are interested in => here is class="nav__links"
+// 2. Determine what element originated the event:
+
+document.querySelector(".nav__links").addEventListener("click", (e) => {
+  // where the event actually happened which is stored in e.target:
+  console.log(e.target); // when i click on the Features, the evenet occures from there:
+  // <a class="nav__link" href="#section--1">Features</a>
+
+  // and when i click in the middle, i get <ul class="nav__links"> </ul> => click happend on the entire elemnet and not on one of the links!
+
+  // <ul class="nav__links"> </ul> is irrevalent for us and this is relevant for us: <a class="nav__link" href="#section--1">Features</a>
+
+  // We need now a matching strategy => we choose only the classes contains "nav__link"
+  if (e.target.classList.contains("nav__link")) {
+    console.log("LINk"); // => we see only 'LINK' word when i click on the three links on top of the page => Features, Operations, Testimonials
+  }
+  // and now, we use the same code as we already used above:
+  
 });
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
