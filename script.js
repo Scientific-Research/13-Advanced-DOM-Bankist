@@ -479,6 +479,9 @@ const loadImgCallBack = (entries, observer) => {
   entry.target.addEventListener("load", () => {
     entry.target.classList.remove("lazy-img");
   });
+
+  // LIKE always, we add the unobserving to stop the observing the images which is no longer necessary and it did already the loading task::
+  observer.unobserve(entry.target);
 };
 
 // 5. Create the Options:
