@@ -389,7 +389,7 @@ console.log(message.style.height);
 
 console.log("-----------------------setProperty for CSS VARIABLES----------");
 
-document.documentElement.style.setProperty("--color-primary", "orangered"); // in this case, the color of all elements with --color-primary variable will change to the orangered!
+// document.documentElement.style.setProperty("--color-primary", "orangered"); // in this case, the color of all elements with --color-primary variable will change to the orangered!
 
 // NOTE: for CSS Variables, we should always use the setProperty as we used it above! The regular style method like this: message.style.backgroundColor will not work!
 // BUT OTHER WAY AROUND IT WORKS: WE CAN ALWAYS USE setProperty FOR BOTH CSS VARIABLES AND REGULAR STYLE METHOD! BUT FOR REGULAR STYLE METHOD, IT WOULD BE MUCH EASIER TO USE THIS METHOD AND NOT setProperty!
@@ -452,7 +452,7 @@ const alerth1 = () => {
   // IT MEANS WITH THIS REMOVEEVENTLISTENER, THE FUNCTION RUNS ONLY ONE TIME(THE FUNCTION LISTENS ONLY ONCE).
 };
 
-h1.addEventListener("mouseenter", alerth1);
+// h1.addEventListener("mouseenter", alerth1);
 
 // We can also say after how many seconds the addeventlistener has to be removed?
 setTimeout(() => h1.removeEventListener("mouseenter", alerth1), 3000);
@@ -563,11 +563,11 @@ console.log(h1_1.parentNode); // for direct parents hwich is similat to the chil
 console.log(h1_1.parentElement); // div.header__title
 
 // It selects the closest header to our h1 element, so the closest parent element that has 'header' class and simply apply this style to that!
-h1_1.closest(".header").style.background = "var(--gradient-secondary)";
+// h1_1.closest(".header").style.background = "var(--gradient-secondary)";
 // We will use it all the time specially with evenet delegation
 
 // It can also return h1 element itself:
-h1_1.closest("h1").style.background = "var(--gradient-primary)";
+// h1_1.closest("h1").style.background = "var(--gradient-primary)";
 
 // NOTE: closest is opposite of querySelector => both receives a query string as input BUT querySelector finds children no matter how deep in DOM Tree WHILE closest method finds Parent and no matter how far up is in DOM Tree!
 
