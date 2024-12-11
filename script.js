@@ -347,6 +347,11 @@ console.log("-----------Using this method for Our sticky navigation---------");
 
 // Defining stickyNavCallBack
 // HOW TO USE THE INTERSECTION OBSERVER API:
+
+// HOW TO CALCULATE THE '-90px' DYNAMICALLY: => when we have a responsive websites for different devices => It would be best to calculate it dynamically and not hard coded:
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight); // we see the height there and it is 90
+
 const stickyNavCallBack = (entries, headerObserver) => {
   // We have only a threshold here which is zero and not an array of thresholds, that's why we don't need foreach() loop!
   const [entry] = entries; // this is the same when we write entries[0]!
@@ -368,6 +373,11 @@ const stickyNavOptions = {
   root: null,
 
   threshold: 0, // 0% means the callback function will be fired when threshold passed and we go out of the view port OR we come inside the view port => come inside from border and go outside from the border! => 0 IS THE BORDER HERE!
+
+  // rootMargin: "-90px",
+  rootMargin: `-${navHeight}px`,
+  // a box of 90 pixels(height) which will apply outside of the target element(of our header!) but the header extends itself to the next header as an extra box, but we don't want that! we want this extra box to stay in header before the header comes to the border, that's why we select -90 instead of 90!
+  // THE NAVIGATION APPEARS EXACTLY 90 PIXELS BEFORE THE THRESHOLD WAS ACTUALLY REACHED!
 };
 
 // 1. Now, we have to get the header element which is a complete section!
