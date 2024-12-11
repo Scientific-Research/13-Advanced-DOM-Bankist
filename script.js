@@ -330,11 +330,51 @@ const obsOptions = {
   root: null, // root will intersect the target and when it is null, it means the whole page view port!
   threshold: 0.1, // is 10%
   // the percentage of intersection at which the observer callback will be called!
+  threshold: [0, 0.2], // 0% means the callback function will be fired when threshold passed and we go out of the view port OR we come inside the view port => come inside from border and go outside from the border! => 0 IS THE BORDER HERE!
+
+  // When we specify the 1 as threshold inside the array threshold: [0, 1, 0.2],=> it means 100% but it is impossible (it will not happen) because section 1 is bigger than view port and we don't see the 100% of section 1 in our view port!
 };
 
 const observer = new IntersectionObserver(obsCallback, obsOptions);
 observer.observe(section1); // we have to enter here the target element!
 // Observer observes the target section1
+
+console.log("-----------Using this method for Our sticky navigation---------");
+
+// AND NOW THE QUESTION IS: How we want that the sticky navigation appears when we schroll the page:
+
+// Answer: When we no longer see the header page. Because when we see the header, the nav bar is there and we don't need to be sticky. But when we leave the header, we need the nav bar to be sticky at the top of the page!
+
+// Defining stickyNavCallBack
+// HOW TO USE THE INTERSECTION OBSERVER API:
+const stickyNavCallBack = (entries, headerObserver) => {
+  // This callback function here will be called each time when observed element(our target element here => section1) is intersecting the root element at the threshold that we defined!
+  // NOTE: whenever the target(section1) is intersecting the viewport (because it is our root) at 10% (because it is our threshold), so, whenever that happens, then this function will be called and no matter if we are scrolling up or down!
+  // NOTE: We can have several thresholds in an array, AN ARRAY OF THRESHOLDS => entries is this array!
+  entries.forEach((entry) => {
+    console.log(entry); // when our target here which is section1 comes into view Port(target => the whole section one is intersecting the viewport => 10% of the section1 has to be viewed in view port because the threshold is 10%), then we will have a new entry and also when the threshold is 10% => intersectionRation: 0.101241... and also isIntersecting property is true! less than 10% will not intersect and therefore, isIntersecting is false!
+    // WHEN WE SCROLL UP OR DOWN AND 10% OR MORE THAN 10% OF THE SECTION! WILL APPEAR ON THE VIEW PORT => isIntersecting WOULD BE TRUE AND WHEN WE SEE FROM SECTION1 LESS THAN 10% IN VIEW PORT => isIntersection WOULD BE FALSE!
+  });
+};
+
+// Defining stickyNavOption:
+const stickyNavOptions = {
+  root: null,
+
+  threshold: 0, // 0% means the callback function will be fired when threshold passed and we go out of the view port OR we come inside the view port => come inside from border and go outside from the border! => 0 IS THE BORDER HERE!
+};
+
+// 1. Now, we have to get the header element which is a complete section!
+const observerHeader = document.querySelector(".header");
+
+// 2. NOW, create our observer:
+const headerObserver = new IntersectionObserver(
+  stickyNavCallBack,
+  stickyNavOptions
+);
+
+// 3.
+headerObserver.observe(observerHeader); // we have to enter here the target element!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
