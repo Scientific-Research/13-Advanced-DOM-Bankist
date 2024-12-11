@@ -209,7 +209,12 @@ console.log("-----------------Passing Arguments to Event Handlers-----------");
 
 // REFACTORING: we have some repetitve code below and we have to refactor them => Refactoring means that, we put the repetitive parts inside a new function and send the needed arguments to that!
 
-const handleHover = (e, opacity) => {
+// const handleHover = (e, opacity) => {
+// USING THE bind() METHOD, we don't need the opacity anymore because the this keyword works well here and carries the opacity value which was already given as argument value to the bind() method!
+
+// I HAVE TO CHNAGE THE handleHover FUNCTION FROM AN ARROW FUNCTION TO A REGULAR FUNCTION, OTHERWISE, this KEYWORD WILL NOT WORK!
+const handleHover = function (e) {
+  // console.log(this);
   // 3. and now, we have to match the element that we are looking for: THE ELEMENT WITH nav__link CLASS ON IT!
   // NOTE: we don't need the closest method here and contains method here is enough, because there is no other child here like the button before that we had button plus a number in a span as the second child and we should use closest there to find a parentelemnet for both of them!
   if (e.target.classList.contains("nav__link")) {
@@ -232,9 +237,11 @@ const handleHover = (e, opacity) => {
       // WITH OPACITY = 1, EVERYTHING BACKS TO 1!, the current element doesn't need that, because it is already has the opacity = 1!
 
       // if (el !== link) el.style.opacity = 0.5;
-      if (el !== link) el.style.opacity = opacity;
+      // if (el !== link) el.style.opacity = opacity;
+      if (el !== link) el.style.opacity = this;
       // logo.style.opacity = 0.5;
-      logo.style.opacity = opacity;
+      // logo.style.opacity = opacity;
+      logo.style.opacity = this;
     });
   }
 };
@@ -269,6 +276,10 @@ nav.addEventListener("mouseover", (e) => {
 nav.addEventListener("mouseout", (e) => {
   handleHover(e, 1);
 });
+
+// We can make it even simple using bind() method => I HAVE TO CHNAGE THE handleHover FUNCTION FROM AN ARROW FUNCTION TO A REGULAR FUNCTION, OTHERWISE, this KEYWORD WILL NOT WORK!
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+nav.addEventListener("mouseout", handleHover.bind(1));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
