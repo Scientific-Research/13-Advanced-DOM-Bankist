@@ -482,12 +482,16 @@ const loadImgCallBack = (entries, observer) => {
 
   // LIKE always, we add the unobserving to stop the observing the images which is no longer necessary and it did already the loading task::
   observer.unobserve(entry.target);
+
+  // We have to load the images before we reach them and also before the user notice the image loading => IN THIS CASE, WE WILL SPECIFY rootMargin as we did for other example too! I HAVE TO WRITE IT AT BELOW IN loadImgOptions SECTION => rootMargin: "-200px",
 };
 
 // 5. Create the Options:
 const loadImgOptions = {
   root: null, // we want the entire view port
   threshold: 0,
+  rootMargin: "-200px", // => 200px before we reach an image the loading should be started and As we approach the images, They are fully loaded and therefore, we don't see any delay as we load the images!
+  // WHEN I CHANGE THE rootMargin TO 200px(from negative to positive one), THE LOADING WOULD BE VERY FAST AND I DON'T LIKE IT PERSONALLY. I LIKE THAT IMAGE TO STAY BLUR A BIT SECOND AND THEN LOAD COMPLETELY => IT IS BEAUTIFUL => IT IS JUST THE MATTER OF PERSONAL PREFERENCES!
 };
 
 // 2. Observer section which is always the same like other previous examples:
