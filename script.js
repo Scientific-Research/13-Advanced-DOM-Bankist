@@ -308,6 +308,30 @@ window.addEventListener("scroll", (e) => {
 
 // NOTE: THIS IS WORKING BUT IS NOT EFFICIENT BECAUSE FOR EVERY SCROLL EVEN SMALL SCROLLING, THE EVENT WILL FIRE A LOT OF COORDINATIONS, THAT'S WHY WE HAVE TO SEARCH FOR OTHER METHODS!
 
+console.log(
+  "Implementing THE SAME STICKY NAVIGATION but using A BETTER way: THE INTERSECTION OBSERVER API"
+);
+
+// QUESTION: WHAT IS INTERSECTION OBSERVER API AND WHY IT IS SO HELPFUL:
+// This API allows our code to basically observe changes to the way that a certain target elements intersects another element or the way that it intersects the viewport!
+
+// HOW TO USE THE INTERSECTION OBSERVER API:
+const obsCallback = (entries, observer) => {
+  // This callback function here will be called each time when observed element(our target element here => section1) is intersecting the root element at the threshold that we defined!
+  // NOTE: whenever the target(section1) is intersecting the viewport (because it is our root) at 10% (because it is our threshold), so, whenever that happens, then this function will be called and no matter if we are scrolling up or down!
+  // NOTE: We can have several thresholds in an array, AN ARRAY OF THRESHOLDS => entries is this array!
+};
+
+const obsOptions = {
+  root: null, // root will intersect the target and when it is null, it means the whole page view port!
+  threshold: 0.1, // is 10%
+  // the percentage of intersection at which the observer callback will be called!
+};
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1); // we have to enter here the target element!
+// Observer observes the target section1
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
