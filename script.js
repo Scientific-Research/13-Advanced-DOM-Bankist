@@ -392,6 +392,40 @@ const headerObserver = new IntersectionObserver(
 // 3.
 headerObserver.observe(observerHeader); // we have to enter here the target element!
 
+console.log("Revealing Elements on Scroll using THE INTERSECTION OBSERVER API");
+
+// we have added the .section--hidden class to all four sections in HTML file to hide these sections and NOW, WE DON'T SEE THEM AND WHAT WE SEE IS ONLY HEADER AND FOOTER!
+
+// OUR JOB IS: REMOVE THIS CLASS AS WE APPROACH THESE SECTIONS To BE APPEARED ONE AFTER ANOTHER:
+
+// We will follow exactly THE INTERSECTION OBSERVER API Procedure:
+
+// 1.
+const allSectionsReveal = document.querySelectorAll(".section");
+
+// entries and observer are two Standard names but we can choose other names too!
+const revealSectionCallBack = (entries, observer) => {};
+const revealSectionOptions = {
+  root: null,
+
+  threshold: 0, // 0% means the callback function will be fired when threshold passed and we go out of the view port OR we come inside the view port => come inside from border and go outside from the border! => 0 IS THE BORDER HERE!
+
+  // rootMargin: "-90px",
+  rootMargin: `-${navHeight}px`,
+};
+
+// 2.
+const sectionObserver = new IntersectionObserver(
+  revealSectionCallBack,
+  revealSectionOptions
+);
+
+// 3.
+// Loop over the above NodeList: we use forEach, whenever we don't want to create a new array!
+allSectionsReveal.forEach((section) => {
+  sectionObserver.observe(section); // we have to enter here the target element!
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
