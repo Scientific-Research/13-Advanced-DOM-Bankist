@@ -468,11 +468,17 @@ const loadImgCallBack = (entries, observer) => {
   console.log(entry);
 
   // We get many observe even when isIntersecting is false! => we have to do the Guard Class like before to return if isIntersecting is Flase, otherwise it can continue:
-  // GURAD CLASS
+  // GURAD CLASS => EARLY RETURN
   if (!entry.isIntersecting) return;
 
-  // entry.target.classList.remove("img[src]");
-  entry.target.classList.remove("lazy-img");
+  // REPLACE src with data-src
+  // rsc = data-src => we have to mention the dataset to point to the data- part of data-src
+  entry.target.src = entry.target.dataset.src;
+
+  // FOR SLOW CONNECTIONS OR SLOW DEVICE, it would be the best to use an addEventListener and once loading is finished, it will remove the blurry filter from that! IT MAENS AT THE SAME TIME WHEN LOADING IS FINISHED, EXACTLY AT THIS TIME THE FLITER WOULD BE REMOVED AND WE CAN SEE THE IMAGE AND NOT BEFORE THAT!
+  entry.target.addEventListener("load", () => {
+    entry.target.classList.remove("lazy-img");
+  });
 };
 
 // 5. Create the Options:
