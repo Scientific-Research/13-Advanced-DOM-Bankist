@@ -283,6 +283,9 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 
 console.log("--------Implementing a Sticky Navigation_ The Scroll Event-----");
 
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords); // DOMRect gives us a lot of parameters, but we need only TOP (current top value) parameter! top: 695.2000122070312 when the page in completely on the top and we didn't do any scrolling!
+
 // We use Scroll event which is available on window and not document!
 window.addEventListener("scroll", (e) => {
   // It fires a lot of events as soon as I scroll down or up, that's why it is not efficient and we have to avoid to use that!
@@ -295,8 +298,15 @@ window.addEventListener("scroll", (e) => {
   // Answer: as soon as we reach the first section => reach to the the line above first section:
   // WHEN WE REACH TO THIS POSITION, WE WANT TO MAKE THE NAVIGATION STICKY!
   // WE can not hard code the value, we have to calculate it dynamically!
-  
+
+  if (window.scrollY > initialCoords.top) {
+    nav.classList.add("sticky"); // we use the sticky class!
+  } else {
+    nav.classList.remove("sticky");
+  }
 });
+
+// NOTE: THIS IS WORKING BUT IS NOT EFFICIENT BECAUSE FOR EVERY SCROLL EVEN SMALL SCROLLING, THE EVENT WILL FIRE A LOT OF COORDINATIONS, THAT'S WHY WE HAVE TO SEARCH FOR OTHER METHODS!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
