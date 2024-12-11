@@ -406,12 +406,10 @@ const allSectionsReveal = document.querySelectorAll(".section");
 // entries and observer are two Standard names but we can choose other names too!
 const revealSectionCallBack = (entries, observer) => {};
 const revealSectionOptions = {
-  root: null,
+  root: null, // like before the root is viewport
 
-  threshold: 0, // 0% means the callback function will be fired when threshold passed and we go out of the view port OR we come inside the view port => come inside from border and go outside from the border! => 0 IS THE BORDER HERE!
-
-  // rootMargin: "-90px",
-  rootMargin: `-${navHeight}px`,
+  threshold: 0.15, // 15% => we set it to something greater than 0 => because we don't want to show the sections right as it enters the viewport, but a little bit later!
+  // THE SECTION IS ONLY REVEALED(OR POP UP) WHEN IT IS 15% VISIBLE!
 };
 
 // 2.
