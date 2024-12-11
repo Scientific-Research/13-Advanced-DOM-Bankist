@@ -281,6 +281,23 @@ nav.addEventListener("mouseout", (e) => {
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
+console.log("--------Implementing a Sticky Navigation_ The Scroll Event-----");
+
+// We use Scroll event which is available on window and not document!
+window.addEventListener("scroll", (e) => {
+  // It fires a lot of events as soon as I scroll down or up, that's why it is not efficient and we have to avoid to use that!
+  // console.log(e);
+
+  // Let's start by get the current scroll position:
+  console.log(window.scrollY); // gives us different values when we scroll up and down
+
+  // THE QUESTION IS NOW: WHEN ACTUALLY THE NAVIGATION SHOULD BECOME STICKY?
+  // Answer: as soon as we reach the first section => reach to the the line above first section:
+  // WHEN WE REACH TO THIS POSITION, WE WANT TO MAKE THE NAVIGATION STICKY!
+  // WE can not hard code the value, we have to calculate it dynamically!
+  
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
