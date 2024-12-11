@@ -461,6 +461,33 @@ const imgTargets = document.querySelectorAll("img[data-src]"); // we don't selec
 
 console.log(imgTargets); // NodeList(3) [img.features__img.lazy-img, img.features__img.lazy-img, img.features__img.lazy-img]
 
+// 4. Create the callBack function:
+const loadImgCallBack = (entries, observer) => {
+  // We have only one Threshold => one Entry
+  const [entry] = entries; // using destructuring
+  console.log(entry);
+
+  // We get many observe even when isIntersecting is false! => we have to do the Guard Class like before to return if isIntersecting is Flase, otherwise it can continue:
+  // GURAD CLASS
+  if (!entry.isIntersecting) return;
+
+  // entry.target.classList.remove("img[src]");
+  entry.target.classList.remove("lazy-img");
+};
+
+// 5. Create the Options:
+const loadImgOptions = {
+  root: null, // we want the entire view port
+  threshold: 0,
+};
+
+// 2. Observer section which is always the same like other previous examples:
+const imgObserver = new IntersectionObserver(loadImgCallBack, loadImgOptions);
+
+// 3. To attach the imgTargets to the imgObserver => we have a NodeList of TargetImages => we have to use the forEach like previous example:
+imgTargets.forEach((img) => {
+  imgObserver.observe(img); // imgObserver will observe each image!
+});
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
