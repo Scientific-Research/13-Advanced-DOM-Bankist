@@ -348,13 +348,19 @@ console.log("-----------Using this method for Our sticky navigation---------");
 // Defining stickyNavCallBack
 // HOW TO USE THE INTERSECTION OBSERVER API:
 const stickyNavCallBack = (entries, headerObserver) => {
-  // This callback function here will be called each time when observed element(our target element here => section1) is intersecting the root element at the threshold that we defined!
-  // NOTE: whenever the target(section1) is intersecting the viewport (because it is our root) at 10% (because it is our threshold), so, whenever that happens, then this function will be called and no matter if we are scrolling up or down!
-  // NOTE: We can have several thresholds in an array, AN ARRAY OF THRESHOLDS => entries is this array!
-  entries.forEach((entry) => {
-    console.log(entry); // when our target here which is section1 comes into view Port(target => the whole section one is intersecting the viewport => 10% of the section1 has to be viewed in view port because the threshold is 10%), then we will have a new entry and also when the threshold is 10% => intersectionRation: 0.101241... and also isIntersecting property is true! less than 10% will not intersect and therefore, isIntersecting is false!
-    // WHEN WE SCROLL UP OR DOWN AND 10% OR MORE THAN 10% OF THE SECTION! WILL APPEAR ON THE VIEW PORT => isIntersecting WOULD BE TRUE AND WHEN WE SEE FROM SECTION1 LESS THAN 10% IN VIEW PORT => isIntersection WOULD BE FALSE!
-  });
+  // We have only a threshold here which is zero and not an array of thresholds, that's why we don't need foreach() loop!
+  const [entry] = entries; // this is the same when we write entries[0]!
+  console.log(entry);
+
+  // We have to add and remove the classes now:
+  // if (entry.isIntersecting === false) { OR the following:
+  if (!entry.isIntersecting) {
+    // it doesn't intersect anymore as soon as we leave the header and in this moment we need exactly the sticky class!
+    nav.classList.add("sticky");
+  } else {
+    // it intersects when we go back and as soon as we enter the header, where we don't need the sticky class anymore because we see the header there anyway!
+    nav.classList.remove("sticky");
+  }
 };
 
 // Defining stickyNavOption:
