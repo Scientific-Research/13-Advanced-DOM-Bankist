@@ -300,9 +300,9 @@ window.addEventListener("scroll", (e) => {
   // WE can not hard code the value, we have to calculate it dynamically!
 
   if (window.scrollY > initialCoords.top) {
-    nav.classList.add("sticky"); // we use the sticky class!
+    // nav.classList.add("sticky"); // we use the sticky class! commeneted out to not interfer with below results in the next implementing!
   } else {
-    nav.classList.remove("sticky");
+    // nav.classList.remove("sticky");
   }
 });
 
