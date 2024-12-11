@@ -404,7 +404,15 @@ console.log("Revealing Elements on Scroll using THE INTERSECTION OBSERVER API");
 const allSectionsReveal = document.querySelectorAll(".section");
 
 // entries and observer are two Standard names but we can choose other names too!
-const revealSectionCallBack = (entries, observer) => {};
+const revealSectionCallBack = (entries, observer) => {
+  // 5. We write here the logic:
+  // We have only one threshold, Therefore we don't need the forEach and we can get that directly from entry using destructuring:
+
+  const [entry] = entries; // it is equal with entries[0]
+  console.log(entry);
+};
+
+// 4.
 const revealSectionOptions = {
   root: null, // like before the root is viewport
 
