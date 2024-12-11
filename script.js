@@ -321,7 +321,7 @@ const obsCallback = (entries, observer) => {
   // NOTE: whenever the target(section1) is intersecting the viewport (because it is our root) at 10% (because it is our threshold), so, whenever that happens, then this function will be called and no matter if we are scrolling up or down!
   // NOTE: We can have several thresholds in an array, AN ARRAY OF THRESHOLDS => entries is this array!
   entries.forEach((entry) => {
-    console.log(entry); // when our target here which is section1 comes into view Port(target => the whole section one is intersecting the viewport => 10% of the section1 has to be viewed in view port because the threshold is 10%), then we will have a new entry and also when the threshold is 10% => intersectionRation: 0.101241... and also isIntersecting property is true! less than 10% will not intersect and therefore, isIntersecting is false!
+    // console.log(entry); // when our target here which is section1 comes into view Port(target => the whole section one is intersecting the viewport => 10% of the section1 has to be viewed in view port because the threshold is 10%), then we will have a new entry and also when the threshold is 10% => intersectionRation: 0.101241... and also isIntersecting property is true! less than 10% will not intersect and therefore, isIntersecting is false!
     // WHEN WE SCROLL UP OR DOWN AND 10% OR MORE THAN 10% OF THE SECTION! WILL APPEAR ON THE VIEW PORT => isIntersecting WOULD BE TRUE AND WHEN WE SEE FROM SECTION1 LESS THAN 10% IN VIEW PORT => isIntersection WOULD BE FALSE!
   });
 };
@@ -355,7 +355,7 @@ console.log(navHeight); // we see the height there and it is 90
 const stickyNavCallBack = (entries, headerObserver) => {
   // We have only a threshold here which is zero and not an array of thresholds, that's why we don't need foreach() loop!
   const [entry] = entries; // this is the same when we write entries[0]!
-  console.log(entry);
+  // console.log(entry);
 
   // We have to add and remove the classes now:
   // if (entry.isIntersecting === false) { OR the following:
@@ -409,7 +409,7 @@ const revealSectionCallBack = (entries, observer) => {
   // We have only one threshold, Therefore we don't need the forEach and we can get that directly from entry using destructuring:
 
   const [entry] = entries; // it is equal with entries[0]
-  console.log(entry);
+  // console.log(entry);
 
   // removing the "section--hidden" from entry in target to see every upcoming section respectively when i am scrolling down!
   // THE FIRST SECTION DOESN'T WORK PROPERLY AND DOESN'T CONSIDER THE 15% THRESHOLD AND IS FIXED(DOESN'T REVEAL), BUT OTHER SECTIONS WORK PROPERLY -- TO REMOVE THE PROBLEM FOR SECTION ONE, IT HAPPENS FOR SECTION ONE WHEN entry.isIntersecting is False, Therefore, we can use IF() to say when entry.isIntersecting is True => it has to be appeard!
@@ -448,6 +448,18 @@ allSectionsReveal.forEach((section) => {
   section.classList.add("section--hidden");
   // AND NOW, LIKE BEFORE, THE SECTIONS ARE HIDDEN AND I DON'T SEE THEM ANYMORE!
 });
+
+console.log("------Lazy Loading Images Using THE INTERSECTION OBSERVER API--");
+
+// This is very helpful when we have a slow connection or not a good cellphone or System:
+// the images with src property are lazy loaded ones and at the end we have to replace the src(the lazy-loaded image) with data-src(original high resolution image) and remove the lazy-img class because it creates a filter in CSS file and does the image bluring!
+
+// START TO USE THE INTERSECTION OBSERVER API:
+// 1.
+const imgTargets = document.querySelectorAll("img[data-src]"); // we don't select all the images because some of them have not lazy-loaded feature! We just select ones with data-src feature(original high resolution image)!
+// img[data-src] => IT MEANS WE SELECT ALL THE IMAGES WITH THE PROPERTY OF data-src
+
+console.log(imgTargets); // NodeList(3) [img.features__img.lazy-img, img.features__img.lazy-img, img.features__img.lazy-img]
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
