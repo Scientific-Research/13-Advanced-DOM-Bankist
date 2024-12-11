@@ -410,6 +410,15 @@ const revealSectionCallBack = (entries, observer) => {
 
   const [entry] = entries; // it is equal with entries[0]
   console.log(entry);
+
+  // removing the "section--hidden" from entry in target to see every upcoming section respectively when i am scrolling down!
+  // THE FIRST SECTION DOESN'T WORK PROPERLY AND DOESN'T CONSIDER THE 15% THRESHOLD AND IS FIXED(DOESN'T REVEAL), BUT OTHER SECTIONS WORK PROPERLY -- TO REMOVE THE PROBLEM FOR SECTION ONE, IT HAPPENS FOR SECTION ONE WHEN entry.isIntersecting is False, Therefore, we can use IF() to say when entry.isIntersecting is True => it has to be appeard!
+
+  // if (entry.isIntersecting) entry.target.classList.remove("section--hidden");
+
+  // OR WE CAN USE THE GUARD CLASS AND DO THE OPPOSITE:
+  if (!entry.isIntersecting) return; // if entry.isIntersecting is false => return and doesn't continue to go to the next line to excute it, otherwise, it continues!
+  entry.target.classList.remove("section--hidden");
 };
 
 // 4.
