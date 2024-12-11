@@ -424,6 +424,10 @@ const sectionObserver = new IntersectionObserver(
 // Loop over the above NodeList: we use forEach, whenever we don't want to create a new array!
 allSectionsReveal.forEach((section) => {
   sectionObserver.observe(section); // we have to enter here the target element!
+
+  // I removed the class section--hidden which hides the sections from HTML file to add that programmatically to the HTML file => It is better to do this, instead of adding it manually:
+  section.classList.add("section--hidden");
+  // AND NOW, LIKE BEFORE, THE SECTIONS ARE HIDDEN AND I DON'T SEE THEM ANYMORE!
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
