@@ -292,7 +292,7 @@ window.addEventListener("scroll", (e) => {
   // console.log(e);
 
   // Let's start by get the current scroll position:
-  console.log(window.scrollY); // gives us different values when we scroll up and down
+  // console.log(window.scrollY); // gives us different values when we scroll up and down
 
   // THE QUESTION IS NOW: WHEN ACTUALLY THE NAVIGATION SHOULD BECOME STICKY?
   // Answer: as soon as we reach the first section => reach to the the line above first section:
@@ -419,6 +419,10 @@ const revealSectionCallBack = (entries, observer) => {
   // OR WE CAN USE THE GUARD CLASS AND DO THE OPPOSITE:
   if (!entry.isIntersecting) return; // if entry.isIntersecting is false => return and doesn't continue to go to the next line to excute it, otherwise, it continues!
   entry.target.classList.remove("section--hidden");
+
+  // ONE MORE SMALL IMPROVEMENT TO IMPROVE A LITTLE BIT OUR OBSERVER PERFORMANCE => to unobserve the sections => as we keep scrolling, observer keeps observing the sections and more events keep getting added which are no longer necessary because we are already finish with them and we don't need the observation for them!
+  // When we clear the terminal and scroll back, we don't see any other observing anymore(no more fired events) in Terminal => line 412!
+  observer.unobserve(entry.target);
 };
 
 // 4.
