@@ -515,12 +515,14 @@ const btnRight = document.querySelector(".slider__btn--right");
 const slider = document.querySelector(".slider"); // Slider is the complete photo + arrow buttons and not only image. Slide is only photo, That's why we have to choose the slider!
 
 // TO SEE THE SLIDES SIMPLER, WE MAKE THE SIZE SMALLER AND ALSO SHIFT TO LEFT TO SEE ALL OF THEM ON THE PAGE!
-slider.style.transform = `scale(${0.15}) translateX(${0}%)`; // we see three photos on the page NOW!
+slider.style.transform = `scale(${0.3}) translateX(${0}%)`; // we see three photos on the page NOW!
 
 slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
 
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
-let curSlice = 0; // cuuren Slide
+let curSlide = 0; // cuuren Slide
+const maxSlide = slides.length;
+
 // let outputArray = [];
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
@@ -533,9 +535,14 @@ slides.forEach((s, i) => {
 
 // GO TO THE NEXT SLIDE:
 btnRight.addEventListener("click", () => {
-  curSlice++; // we we go to the next slide, we will increase that!
+  if (curSlide === maxSlide - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++; // we we go to the next slide, we will increase that!
+  }
+
   slides.forEach((s, i) => {
-    s.style.transform = `translateX(${100 * (i - curSlice)}%)`;
+    s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
     // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
     // The width of each photo is 100% and the second one starts right after the first one!
     // TranslateX() moves them to position 100%
