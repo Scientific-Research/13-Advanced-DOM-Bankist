@@ -555,7 +555,7 @@ slides.forEach((s, i) => {
 */
 
 // GO TO THE NEXT SLIDE:
-btnRight.addEventListener("click", () => {
+const nextSlide = () => {
   if (curSlide === maxSlide - 1) {
     curSlide = 0;
   } else {
@@ -563,8 +563,11 @@ btnRight.addEventListener("click", () => {
   }
 
   goToSlide(curSlide);
-});
+};
+
+btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't get any parameter, that's why we can write its name directly here!
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
+
 // console.log(outputArray); // [0, 100, 200, 300]
 
 // let counter = 0;
