@@ -524,14 +524,35 @@ let curSlide = 0; // cuuren Slide
 const maxSlide = slides.length;
 
 // let outputArray = [];
+// slides.forEach((s, i) => {
+//   s.style.transform = `translateX(${100 * i}%)`;
+//   // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+//   // The width of each photo is 100% and the second one starts right after the first one!
+//   // TranslateX() moves them to position 100%
+//   // transform = translateX(0%),(100%),(200%),(300%)
+//   // outputArray.push(Number(`${100 * i}`));
+// });
+
+const goToSlide = (slide) => {
+  slides.forEach((s, i) => {
+    // s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+    s.style.transform = `translateX(${100 * (i - slide)}%)`;
+    // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+    // The width of each photo is 100% and the second one starts right after the first one!
+    // TranslateX() moves them to position 100%
+    // transform = translateX(0%),(100%),(200%),(300%)
+    // outputArray.push(Number(`${100 * i}`));
+  });
+  // FOR THE SECOND SLIDE, WE NEED => [-100%, 0%, 100%, 200%]
+};
+
+goToSlide(0); // Go TO slide 0 => I commented the above function out which is as following:
+// IN goToSlide() WHEN I PUT 0 INSTEAD OF slice => {100 * (i - slide)} would be 100*i which is exactly the following function:
+/* 
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
-  // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
-  // The width of each photo is 100% and the second one starts right after the first one!
-  // TranslateX() moves them to position 100%
-  // transform = translateX(0%),(100%),(200%),(300%)
-  // outputArray.push(Number(`${100 * i}`));
-});
+  });
+*/
 
 // GO TO THE NEXT SLIDE:
 btnRight.addEventListener("click", () => {
@@ -541,15 +562,7 @@ btnRight.addEventListener("click", () => {
     curSlide++; // we we go to the next slide, we will increase that!
   }
 
-  slides.forEach((s, i) => {
-    s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
-    // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
-    // The width of each photo is 100% and the second one starts right after the first one!
-    // TranslateX() moves them to position 100%
-    // transform = translateX(0%),(100%),(200%),(300%)
-    // outputArray.push(Number(`${100 * i}`));
-  });
-  // FOR THE SECOND SLIDE, WE NEED => [-100%, 0%, 100%, 200%]
+  goToSlide(curSlide);
 });
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 // console.log(outputArray); // [0, 100, 200, 300]
