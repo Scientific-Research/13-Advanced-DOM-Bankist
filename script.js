@@ -501,6 +501,11 @@ const imgObserver = new IntersectionObserver(loadImgCallBack, loadImgOptions);
 imgTargets.forEach((img) => {
   imgObserver.observe(img); // imgObserver will observe each image!
 });
+
+console.log("------------Building a Slider Component_Part_1-----------------");
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
 ////////////////////////////////////////////////////////////////////////////////////////////////
