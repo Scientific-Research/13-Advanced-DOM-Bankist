@@ -510,6 +510,13 @@ const slides = document.querySelectorAll(".slide");
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
 
+const slider = document.querySelector(".slider"); // Slider is the complete photo + arrow buttons and not only image. Slide is only photo, That's why we have to choose the slider!
+
+// TO SEE THE SLIDES SIMPLER, WE MAKE THE SIZE SMALLER AND ALSO SHIFT TO LEFT TO SEE ALL OF THEM ON THE PAGE!
+slider.style.transform = `scale(${0.4}) translateX(${-100}%)`; // we see three photos on the page NOW!
+
+slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
+
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
   // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
