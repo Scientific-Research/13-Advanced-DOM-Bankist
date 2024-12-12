@@ -515,7 +515,7 @@ const btnRight = document.querySelector(".slider__btn--right");
 const slider = document.querySelector(".slider"); // Slider is the complete photo + arrow buttons and not only image. Slide is only photo, That's why we have to choose the slider!
 
 // TO SEE THE SLIDES SIMPLER, WE MAKE THE SIZE SMALLER AND ALSO SHIFT TO LEFT TO SEE ALL OF THEM ON THE PAGE!
-slider.style.transform = `scale(${0.2}) translateX(${-100}%)`; // we see three photos on the page NOW!
+slider.style.transform = `scale(${0.15}) translateX(${0}%)`; // we see three photos on the page NOW!
 
 slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
 
@@ -535,26 +535,35 @@ let counter = 0;
 btnRight.addEventListener("click", () => {
   counter++;
   slides.forEach((s, i) => {
-    if (slides.length === counter) {
-      // console.log(slides.length);
-      // console.log(i);
-      // console.log(counter);
-      // outputArray = 0;
-      // for (let index = 0; index < slides.length; index++) {
-      // const element = array[index];
-      // s.style.transform = `translateX(${(outputArray[index] += 100)}%)`;
-      s.style.transform = `translateX(${100 * i}%)`;
-      // }
-      // s.style.transform = `translateX(${(outputArray[i] = 100)}%)`;
-      // s.style.transform = `translateX(${(outputArray[i] = 200)}%)`;
-      // s.style.transform = `translateX(${(outputArray[i] = 300)}%)`;
-      console.log(s.style.transform);
-      console.log(outputArray);
+    console.log("iOutSideIF", i);
+    if (slides.length === i + 1) {
+      console.log("Insdie IF");
+      // RESET: go back to the first photo
+      // s.style.transform = `translateX(${100 * i}%)`;
+      // console.log(s.style.transform);
+
+      // outputArray = [0, 0, 0, 0];
+      slides.forEach((s, i) => {
+        // o += 100;
+        // console.log(o);
+        // outputArray.push(o);
+        // s.style.transform = `translateX(${(outputArray[i] += 300)}%)`;
+        outputArray[i] = Number(`${100 * i}`);
+        s.style.transform = `translateX(${outputArray[i]}%)`;
+        console.log("s.style.transformIF", s.style.transform);
+
+        // console.log("counter:", counter);
+        console.log("iIF:" + i);
+      });
+      console.log("outputArrayIF", outputArray);
+      counter = 0;
     } else {
-      console.log(i);
+      console.log("i2:" + i);
+      console.log("outputArray", outputArray);
       // s.style.transform = `translateX(${100 * i}%)`;
       s.style.transform = `translateX(${(outputArray[i] -= 100)}%)`;
       console.log(s.style.transform);
+      // console.log(counter);
 
       // WHEN WE REACH THE LAST PHOTO, WE HAVE TO BACK TO thE FIRST PHOTO => RESET
       // console.log(outputArray); // [0, 100, 200, 300]
