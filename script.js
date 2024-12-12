@@ -506,6 +506,8 @@ console.log("------------Building a Slider Component_Part_1-----------------");
 
 // Slider
 const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--right");
 
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
@@ -513,16 +515,45 @@ const slides = document.querySelectorAll(".slide");
 const slider = document.querySelector(".slider"); // Slider is the complete photo + arrow buttons and not only image. Slide is only photo, That's why we have to choose the slider!
 
 // TO SEE THE SLIDES SIMPLER, WE MAKE THE SIZE SMALLER AND ALSO SHIFT TO LEFT TO SEE ALL OF THEM ON THE PAGE!
-slider.style.transform = `scale(${0.4}) translateX(${-100}%)`; // we see three photos on the page NOW!
+slider.style.transform = `scale(${0.3}) translateX(${-100}%)`; // we see three photos on the page NOW!
 
 slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
 
+const outputArray = [];
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
   // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
   // The width of each photo is 100% and the second one starts right after the first one!
   // TranslateX() moves them to position 100%
   // transform = translateX(0%),(100%),(200%),(300%)
+  outputArray.push(Number(`${100 * i}`));
+});
+console.log(outputArray);
+
+// TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
+btnRight.addEventListener("click", () => {
+  slides.forEach((s, i) => {
+    // s.style.transform = `translateX(${100 * i}%)`;
+    s.style.transform = `translateX(${(outputArray[i] -= 100)}%)`;
+    console.log(s.style.transform);
+    // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+    // The width of each photo is 100% and the second one starts right after the first one!
+    // TranslateX() moves them to position 100%
+    // transform = translateX(0%),(100%),(200%),(300%)
+  });
+});
+
+// TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
+btnLeft.addEventListener("click", () => {
+  slides.forEach((s, j) => {
+    // s.style.transform = `translateX(${100 * i}%)`;
+    s.style.transform = `translateX(${(outputArray[j] += 100)}%)`;
+    console.log(s.style.transform);
+    // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+    // The width of each photo is 100% and the second one starts right after the first one!
+    // TranslateX() moves them to position 100%
+    // transform = translateX(0%),(100%),(200%),(300%)
+  });
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
