@@ -581,6 +581,19 @@ btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't
 
 // FOR THE LEFT BUTTON:
 btnLeft.addEventListener("click", prevSlide);
+
+// TO ADD the Arrow Keys => RIGHT AND LEFT TO addEvenetListener()
+// As soon as the key pressed down => it will fired!
+document.addEventListener("keydown", (e) => {
+  console.log(e); // we can get the info about which key was pressed from e in Terminal
+  if (e.key === "ArrowLeft") {
+    prevSlide();
+  }
+
+  // OR WE CAN USE SHORT CIRCUIT:
+  e.key === "ArrowRight" && nextSlide();
+});
+
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 
 // console.log(outputArray); // [0, 100, 200, 300]
