@@ -519,62 +519,79 @@ slider.style.transform = `scale(${0.15}) translateX(${0}%)`; // we see three pho
 
 slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
 
-let outputArray = [];
+//////////////////////////////////JONAS SOLUTION///////////////////////////////////
+let curSlice = 0; // cuuren Slide
+// let outputArray = [];
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
   // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
   // The width of each photo is 100% and the second one starts right after the first one!
   // TranslateX() moves them to position 100%
   // transform = translateX(0%),(100%),(200%),(300%)
-  outputArray.push(Number(`${100 * i}`));
+  // outputArray.push(Number(`${100 * i}`));
 });
-console.log(outputArray); // [0, 100, 200, 300]
 
-let counter = 0;
-// TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
+// GO TO THE NEXT SLIDE:
 btnRight.addEventListener("click", () => {
-  counter++;
+  curSlice++; // we we go to the next slide, we will increase that!
   slides.forEach((s, i) => {
-    console.log("iOutSideIF", i);
-    if (slides.length === i + 1) {
-      console.log("Insdie IF");
-      // RESET: go back to the first photo
-      // s.style.transform = `translateX(${100 * i}%)`;
-      // console.log(s.style.transform);
-
-      // outputArray = [0, 0, 0, 0];
-      slides.forEach((s, i) => {
-        // o += 100;
-        // console.log(o);
-        // outputArray.push(o);
-        // s.style.transform = `translateX(${(outputArray[i] += 300)}%)`;
-        outputArray[i] = Number(`${100 * i}`);
-        s.style.transform = `translateX(${outputArray[i]}%)`;
-        console.log("s.style.transformIF", s.style.transform);
-
-        // console.log("counter:", counter);
-        console.log("iIF:" + i);
-      });
-      console.log("outputArrayIF", outputArray);
-      counter = 0;
-    } else {
-      console.log("i2:" + i);
-      console.log("outputArray", outputArray);
-      // s.style.transform = `translateX(${100 * i}%)`;
-      s.style.transform = `translateX(${(outputArray[i] -= 100)}%)`;
-      console.log(s.style.transform);
-      // console.log(counter);
-
-      // WHEN WE REACH THE LAST PHOTO, WE HAVE TO BACK TO thE FIRST PHOTO => RESET
-      // console.log(outputArray); // [0, 100, 200, 300]
-    }
+    s.style.transform = `translateX(${100 * (i - curSlice)}%)`;
     // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
     // The width of each photo is 100% and the second one starts right after the first one!
     // TranslateX() moves them to position 100%
     // transform = translateX(0%),(100%),(200%),(300%)
+    // outputArray.push(Number(`${100 * i}`));
   });
-  console.log("-----------------------------------------------------");
+  // FOR THE SECOND SLIDE, WE NEED => [-100%, 0%, 100%, 200%]
 });
+//////////////////////////////////JONAS SOLUTION///////////////////////////////////
+// console.log(outputArray); // [0, 100, 200, 300]
+
+// let counter = 0;
+// TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
+
+////////////////////////////////////MY SOLUTION WHICH IS NOT COMPLETE//////////////////
+// counter++;
+// slides.forEach((s, i) => {
+//   console.log("iOutSideIF", i);
+//   if (slides.length === i + 1) {
+//     console.log("Insdie IF");
+//     // RESET: go back to the first photo
+//     // s.style.transform = `translateX(${100 * i}%)`;
+//     // console.log(s.style.transform);
+
+//     // outputArray = [0, 0, 0, 0];
+//     slides.forEach((s, i) => {
+//       // o += 100;
+//       // console.log(o);
+//       // outputArray.push(o);
+//       // s.style.transform = `translateX(${(outputArray[i] += 300)}%)`;
+//       outputArray[i] = Number(`${100 * i}`);
+//       s.style.transform = `translateX(${outputArray[i]}%)`;
+//       console.log("s.style.transformIF", s.style.transform);
+
+//       // console.log("counter:", counter);
+//       console.log("iIF:" + i);
+//     });
+//     console.log("outputArrayIF", outputArray);
+//     counter = 0;
+//   } else {
+//     console.log("i2:" + i);
+//     console.log("outputArray", outputArray);
+//     // s.style.transform = `translateX(${100 * i}%)`;
+//     s.style.transform = `translateX(${(outputArray[i] -= 100)}%)`;
+//     console.log(s.style.transform);
+//     // console.log(counter);
+
+//     // WHEN WE REACH THE LAST PHOTO, WE HAVE TO BACK TO thE FIRST PHOTO => RESET
+//     // console.log(outputArray); // [0, 100, 200, 300]
+//   }
+//   // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+//   // The width of each photo is 100% and the second one starts right after the first one!
+//   // TranslateX() moves them to position 100%
+//   // transform = translateX(0%),(100%),(200%),(300%)
+// });
+////////////////////////////////////MY SOLUTION WHICH IS NOT COMPLETE//////////////////
 
 // TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
 btnLeft.addEventListener("click", () => {
