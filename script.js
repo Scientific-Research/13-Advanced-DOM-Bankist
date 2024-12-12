@@ -515,9 +515,9 @@ const btnRight = document.querySelector(".slider__btn--right");
 const slider = document.querySelector(".slider"); // Slider is the complete photo + arrow buttons and not only image. Slide is only photo, That's why we have to choose the slider!
 
 // TO SEE THE SLIDES SIMPLER, WE MAKE THE SIZE SMALLER AND ALSO SHIFT TO LEFT TO SEE ALL OF THEM ON THE PAGE!
-slider.style.transform = `scale(${0.3}) translateX(${0}%)`; // we see three photos on the page NOW!
+// slider.style.transform = `scale(${0.3}) translateX(${0}%)`; // we see three photos on the page NOW!
 
-slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
+// slider.style.overflow = `visible`; // The overflow is hidden, therefore, we don't see all the pictures side by side, To see them side by side, we have to change the overflow to visible!
 
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 let curSlide = 0; // cuuren Slide
