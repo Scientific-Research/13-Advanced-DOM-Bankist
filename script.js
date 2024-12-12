@@ -536,21 +536,22 @@ btnRight.addEventListener("click", () => {
   counter++;
   slides.forEach((s, i) => {
     if (slides.length === counter) {
-      console.log(slides.length);
-      console.log(i);
-      console.log(counter);
+      // console.log(slides.length);
+      // console.log(i);
+      // console.log(counter);
       // outputArray = 0;
-      for (let index = 0; index < slides.length; index++) {
-        // const element = array[index];
-        // s.style.transform = `translateX(${(outputArray[index] += 100)}%)`;
-        s.style.transform = `translateX(${100 * i}%)`;
-      }
+      // for (let index = 0; index < slides.length; index++) {
+      // const element = array[index];
+      // s.style.transform = `translateX(${(outputArray[index] += 100)}%)`;
+      s.style.transform = `translateX(${100 * i}%)`;
+      // }
       // s.style.transform = `translateX(${(outputArray[i] = 100)}%)`;
       // s.style.transform = `translateX(${(outputArray[i] = 200)}%)`;
       // s.style.transform = `translateX(${(outputArray[i] = 300)}%)`;
       console.log(s.style.transform);
       console.log(outputArray);
     } else {
+      console.log(i);
       // s.style.transform = `translateX(${100 * i}%)`;
       s.style.transform = `translateX(${(outputArray[i] -= 100)}%)`;
       console.log(s.style.transform);
