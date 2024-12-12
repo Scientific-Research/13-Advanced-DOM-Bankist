@@ -565,7 +565,22 @@ const nextSlide = () => {
   goToSlide(curSlide);
 };
 
+// GO TO THE NEXT SLIDE:
+const prevSlide = () => {
+  if (curSlide === curSlide) {
+    // curSlide = 0;
+    curSlide--;
+  } else {
+    curSlide = 0; // we we go to the next slide, we will increase that!
+  }
+
+  goToSlide(curSlide);
+};
+
 btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't get any parameter, that's why we can write its name directly here!
+
+// FOR THE LEFT BUTTON:
+btnLeft.addEventListener("click", prevSlide);
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 
 // console.log(outputArray); // [0, 100, 200, 300]
@@ -614,20 +629,20 @@ btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't
 //   // TranslateX() moves them to position 100%
 //   // transform = translateX(0%),(100%),(200%),(300%)
 // });
-////////////////////////////////////MY SOLUTION WHICH IS NOT COMPLETE//////////////////
 
 // TO MAKE THE SLIDE GO TO THE RIGHT USING RIGHT BUTTON:
-btnLeft.addEventListener("click", () => {
-  slides.forEach((s, j) => {
-    // s.style.transform = `translateX(${100 * i}%)`;
-    s.style.transform = `translateX(${(outputArray[j] += 100)}%)`;
-    console.log(s.style.transform);
-    // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
-    // The width of each photo is 100% and the second one starts right after the first one!
-    // TranslateX() moves them to position 100%
-    // transform = translateX(0%),(100%),(200%),(300%)
-  });
-});
+// btnLeft.addEventListener("click", () => {
+//   slides.forEach((s, j) => {
+//     // s.style.transform = `translateX(${100 * i}%)`;
+//     s.style.transform = `translateX(${(outputArray[j] += 100)}%)`;
+//     console.log(s.style.transform);
+//     // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+//     // The width of each photo is 100% and the second one starts right after the first one!
+//     // TranslateX() moves them to position 100%
+//     // transform = translateX(0%),(100%),(200%),(300%)
+//   });
+// });
+////////////////////////////////////MY SOLUTION WHICH IS NOT COMPLETE//////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
