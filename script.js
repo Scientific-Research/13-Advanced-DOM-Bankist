@@ -557,6 +557,7 @@ slides.forEach((s, i) => {
 // GO TO THE NEXT SLIDE:
 const nextSlide = () => {
   if (curSlide === maxSlide - 1) {
+    // when we are on the last slide, and we click the right button again => it will back to the first slide!
     curSlide = 0;
   } else {
     curSlide++; // we we go to the next slide, we will increase that!
@@ -567,11 +568,10 @@ const nextSlide = () => {
 
 // GO TO THE NEXT SLIDE:
 const prevSlide = () => {
-  if (curSlide === curSlide) {
-    // curSlide = 0;
-    curSlide--;
+  if (curSlide === 0) {
+    curSlide = maxSlide - 1; // when the current slide is 0 (we are in first slide) and click the left button again => we go to the last slide to the right!
   } else {
-    curSlide = 0; // we we go to the next slide, we will increase that!
+    curSlide--;
   }
 
   goToSlide(curSlide);
