@@ -508,6 +508,7 @@ console.log("------------Building a Slider Component_Part_1-----------------");
 const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
+const dotContainer = document.querySelector(".dots");
 
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
@@ -532,6 +533,22 @@ const maxSlide = slides.length;
 //   // transform = translateX(0%),(100%),(200%),(300%)
 //   // outputArray.push(Number(`${100 * i}`));
 // });
+
+// Create DOTS:
+const createDots = () => {
+  // We want to create an element like below element => AT THE END WE WILL HAVE THREE DOTS:
+  // <button class="dots__dot" data-slide="0"></button>
+  // NOTE: WE WANT TO CREATE ONE DOT ELEMENT FOR EACH SLIDE:
+
+  // WE LOOP OVER SLIDES TO JUST GET THE i FROM THAT AND NOT THE SLIDE INFO ITSELF: _ :means this variable is not important for us and we don't need it!
+  slides.forEach((_, i) => {
+    dotContainer.insertAdjacentHTML(
+      // beforeend => adding it as last child - after beforeend comes the HTML Code in Backtick format!
+      "beforeend",
+      `<button class="dots__dot" data-slide="0"></button>`
+    );
+  });
+};
 
 const goToSlide = (slide) => {
   slides.forEach((s, i) => {
