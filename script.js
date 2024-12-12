@@ -504,7 +504,19 @@ imgTargets.forEach((img) => {
 
 console.log("------------Building a Slider Component_Part_1-----------------");
 
+// Slider
+const slides = document.querySelectorAll(".slide");
 
+// NOW, The photos are on top of each other and we have to put them side by side:
+// SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
+
+slides.forEach((s, i) => {
+  s.style.transform = `translateX(${100 * i}%)`;
+  // => i = 0 => translateX(0), => i = 1 => translateX(100),=> i = 2 => translateX(200),=> i = 3 => translateX(300)
+  // The width of each photo is 100% and the second one starts right after the first one!
+  // TranslateX() moves them to position 100%
+  // transform = translateX(0%),(100%),(200%),(300%)
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // ADVANCED-DOM-Banklist
