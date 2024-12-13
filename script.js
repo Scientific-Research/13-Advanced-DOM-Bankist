@@ -509,6 +509,7 @@ const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dotContainer = document.querySelector(".dots");
+const dots = document.querySelectorAll(".dots__dot");
 
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
@@ -552,6 +553,24 @@ const createDots = () => {
 
 createDots();
 
+// We need this function to hightlight the active dot with respect to selected current slide:
+const activateDot = (slide) => {
+  // We have to do the ssame procedure approximately as we did for three buttons above:
+
+  // 1. Before we activate one of them, we have to deactivate all of them:
+  // WE had already this: tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  dots.forEach((d) => d.classList.remove("dots__dot--active"));
+
+  // 2. We have to activate the only dot that we are interested in:
+  document
+    // <button class="dots__dot dots__dot--active" data-slide="1"></button>
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add("dots__dot--active");
+  // FOR EXAMPLE: WE SELECT SLIDE NO.2 => WE WANT THAT THE RESPECTED DOT WHICH IS SECOND DOT BE SELECTED => THAT'S WHY IN .querySelector(`.dots__dot[data-slide="${slide}"]`), THE SLIDE WOULD BE TWO, THEREFORE THE SECOND DOT WILL BE SELECTED!
+};
+
+activateDot(0); // to see the first dot is active for first slide!
+
 const goToSlide = (slide) => {
   slides.forEach((s, i) => {
     // s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
@@ -583,6 +602,8 @@ const nextSlide = () => {
   }
 
   goToSlide(curSlide);
+  // WE HAVE TO CALL THE ACTIVATEDOT FUNCTION NOW TO HAVE THE HIGHLIGHTED DOT IN RESPECT TO THE SELECTED SLIDE:
+  activateDot(curSlide);
 };
 
 // GO TO THE NEXT SLIDE:
@@ -594,6 +615,8 @@ const prevSlide = () => {
   }
 
   goToSlide(curSlide);
+  // WE HAVE TO CALL THE ACTIVATEDOT FUNCTION NOW TO HAVE THE HIGHLIGHTED DOT IN RESPECT TO THE SELECTED SLIDE:
+  activateDot(curSlide);
 };
 
 btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't get any parameter, that's why we can write its name directly here!
@@ -628,6 +651,8 @@ dotContainer.addEventListener("click", (e) => {
 
     // And now, we have to go to the slide that we selected now and has read from dataset:
     goToSlide(slide);
+    // WE HAVE TO CALL THE ACTIVATEDOT FUNCTION NOW TO HAVE THE HIGHLIGHTED DOT IN RESPECT TO THE SELECTED SLIDE:
+    activateDot(slide);
   }
 });
 
