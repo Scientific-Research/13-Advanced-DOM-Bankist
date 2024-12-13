@@ -551,8 +551,6 @@ const createDots = () => {
   });
 };
 
-createDots();
-
 // We need this function to hightlight the active dot with respect to selected current slide:
 const activateDot = (slide) => {
   // We have to do the ssame procedure approximately as we did for three buttons above:
@@ -569,8 +567,6 @@ const activateDot = (slide) => {
   // FOR EXAMPLE: WE SELECT SLIDE NO.2 => WE WANT THAT THE RESPECTED DOT WHICH IS SECOND DOT BE SELECTED => THAT'S WHY IN .querySelector(`.dots__dot[data-slide="${slide}"]`), THE SLIDE WOULD BE TWO, THEREFORE THE SECOND DOT WILL BE SELECTED!
 };
 
-activateDot(0); // to see the first dot is active for first slide!
-
 const goToSlide = (slide) => {
   slides.forEach((s, i) => {
     // s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
@@ -583,14 +579,6 @@ const goToSlide = (slide) => {
   });
   // FOR THE SECOND SLIDE, WE NEED => [-100%, 0%, 100%, 200%]
 };
-
-goToSlide(0); // Go TO slide 0 => I commented the above function out which is as following:
-// IN goToSlide() WHEN I PUT 0 INSTEAD OF slice => {100 * (i - slide)} would be 100*i which is exactly the following function:
-/* 
-slides.forEach((s, i) => {
-  s.style.transform = `translateX(${100 * i}%)`;
-  });
-*/
 
 // GO TO THE NEXT SLIDE:
 const nextSlide = () => {
@@ -618,6 +606,21 @@ const prevSlide = () => {
   // WE HAVE TO CALL THE ACTIVATEDOT FUNCTION NOW TO HAVE THE HIGHLIGHTED DOT IN RESPECT TO THE SELECTED SLIDE:
   activateDot(curSlide);
 };
+
+// Initialization:
+const init = () => {
+  goToSlide(0); // Go TO slide 0 => I commented the above function out which is as following:
+  // IN goToSlide() WHEN I PUT 0 INSTEAD OF slice => {100 * (i - slide)} would be 100*i which is exactly the following function:
+  /* 
+slides.forEach((s, i) => {
+  s.style.transform = `translateX(${100 * i}%)`;
+  });
+*/
+  createDots();
+  activateDot(0); // to see the first dot is active for first slide!
+};
+
+init();
 
 btnRight.addEventListener("click", nextSlide); // the nextSlide function doesn't get any parameter, that's why we can write its name directly here!
 
