@@ -613,6 +613,24 @@ document.addEventListener("keydown", (e) => {
   e.key === "ArrowRight" && nextSlide();
 });
 
+// WE ARE GOING TO USE EVENT DELEGATION FOR DOTS INSTEAD OF ATTACHING ONE addEventListener() to each dot, BUT INSTEAD TO THE COMMON PARENT:
+
+dotContainer.addEventListener("click", (e) => {
+  // TO match the elment in which we are interested in => we check simply the class:
+  if (e.target.classList.contains("dots__dot")) {
+    console.log("DOT");
+
+    // const slide = e.target.dataset.slide; // we have above this: class="dots__dot" data-slide="${i}" => when we have data- => we have to use dataset. + name of the element which is slide!
+
+    // OR we use destructuring directly => This is an object => we use object destructuring:
+    // WE selected our slide:
+    const { slide } = e.target.dataset;
+
+    // And now, we have to go to the slide that we selected now and has read from dataset:
+    goToSlide(slide);
+  }
+});
+
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 
 // console.log(outputArray); // [0, 100, 200, 300]
