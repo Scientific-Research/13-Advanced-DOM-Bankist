@@ -545,10 +545,12 @@ const createDots = () => {
     dotContainer.insertAdjacentHTML(
       // beforeend => adding it as last child - after beforeend comes the HTML Code in Backtick format!
       "beforeend",
-      `<button class="dots__dot" data-slide="0"></button>`
+      `<button class="dots__dot" data-slide="${i}"></button>`
     );
   });
 };
+
+createDots();
 
 const goToSlide = (slide) => {
   slides.forEach((s, i) => {
