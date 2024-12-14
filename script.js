@@ -509,6 +509,7 @@ const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dotContainer = document.querySelector(".dots");
+const yearCopyright = document.querySelector(".yearCopyright");
 
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
@@ -659,6 +660,9 @@ dotContainer.addEventListener("click", (e) => {
     activateDot(slide);
   }
 });
+
+const year = new Date().getFullYear();
+yearCopyright.textContent = year;
 
 //////////////////////////////////JONAS SOLUTION///////////////////////////////////
 
