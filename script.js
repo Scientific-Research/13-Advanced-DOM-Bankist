@@ -509,7 +509,6 @@ const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dotContainer = document.querySelector(".dots");
-const dots = document.querySelectorAll(".dots__dot");
 
 // NOW, The photos are on top of each other and we have to put them side by side:
 // SLIDES is a NodeLIst and we have to use forEach loop to get every slide:
@@ -557,7 +556,9 @@ const activateDot = (slide) => {
 
   // 1. Before we activate one of them, we have to deactivate all of them:
   // WE had already this: tabs.forEach((t) => t.classList.remove("operations__tab--active"));
-  dots.forEach((d) => d.classList.remove("dots__dot--active"));
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((d) => d.classList.remove("dots__dot--active"));
 
   // 2. We have to activate the only dot that we are interested in:
   document
