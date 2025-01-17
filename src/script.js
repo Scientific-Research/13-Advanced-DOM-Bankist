@@ -1,3 +1,4 @@
+import './style.css'
 "use strict";
 
 const modal = document.querySelector(".modal");
@@ -81,7 +82,7 @@ btnScrollTo.addEventListener("click", (e) => {
   // });
 
   // BUT THERE IS STILL A MODERN WAY TO DO THAT => WITHOUT ALL ABOVE THE WIERD POSITIONS AND CALCULATIONS: => we give the destination address(section1) and the object with one property!
-  section1.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
+  section1?.scrollIntoView({ behavior: "smooth" }); // AND IT WORKS WELL JUST THE SAME
 });
 
 //////////////////////////////////////////////////
@@ -105,7 +106,7 @@ document.querySelectorAll(".nav__link").forEach((el) => {
 
     // For example: when i click on the Features link, the id would be #section--1 and the output from document.querySelector(id) would be section--1 which is the id of section 1, therefore it will move smoothly to the section 1!
     // For other ids and links, the process would be the same!
-    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   });
 });
 
@@ -135,7 +136,7 @@ document.querySelector(".nav__links").addEventListener("click", (e) => {
     // and now, we use the same code as we already used above:
     const id = e.target.getAttribute("href");
     console.log(id); // #section--1, #section--2, #section--3
-    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   }
 });
 

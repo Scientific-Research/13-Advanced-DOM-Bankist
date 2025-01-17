@@ -1,0 +1,29 @@
+{
+  "name": "13-advanced-dom-bankist",
+  "version": "1.0.0",
+  "description": "banking meets minimalist",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --open",
+    "setup": "pm2 start --name mk-bankist-minimalist-banking npm -- start",
+    "start": "npm run build && webpack serve --open",
+    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart mk-bankist-minimalist-banking &&pm2 save",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0"
+  }
+}
